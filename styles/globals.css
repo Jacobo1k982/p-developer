@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================
+   GLOBAL STYLES
+============================ */
+body {
+  background-color: #000 !important;
+  overflow: hidden;
+  height: 100vh;
+  font-smoothing: antialiased;
+}
+
+/* ============================
+   CUSTOM UTILITIES & COMPONENTS
+============================ */
+@layer components {
+  .transition {
+    @apply transition-all duration-1000 delay-200;
+  }
+
+  .card_stylings {
+    @apply bg-EveningBlack/95 rounded-xl hover:bg-gradient-to-br hover:from-Green/10 hover:to-indigo-600/5 transition-all duration-500 ease-out;
+  }
+
+  .button {
+    @apply bg-Green hover:bg-Green/60 transition rounded-xl text-MidNightBlack text-base font-medium px-8 py-2;
+  }
+
+  .input_stylings {
+    @apply bg-DeepNightBlack text-SilverGray text-sm rounded-lg outline-none focus:ring-1 focus:ring-Green block w-full pl-10 p-2.5;
+  }
+
+  /* ============================
+     CUSTOM FONTS
+  ============================ */
+  @font-face {
+    font-family: 'cascadia-normal';
+    src: url(/public/fonts/Cascadia.ttf);
+  }
+
+  @font-face {
+    font-family: 'circular-light';
+    src: url(/public/fonts/Circular-Light.otf);
+  }
+
+  @font-face {
+    font-family: 'circular-normal';
+    src: url(/public/fonts/Circular-Book.otf);
+  }
+
+  @font-face {
+    font-family: 'circular-medium';
+    src: url(/public/fonts/Circular-Medium.otf);
+  }
+
+  @font-face {
+    font-family: 'circular-bold';
+    src: url(/public/fonts/Circular-Bold.otf);
+  }
+}
+
+/* ============================
+   SCROLLBAR
+============================ */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #444;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1fdf64;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1fdf64;
+  }
+}
+
+/* ============================
+   ICON ANIMATION
+============================ */
+.icon {
+  animation: scale-icon 1s infinite ease-in-out;
+}
+
+@keyframes scale-icon {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ============================
+   ANT DESIGN OVERRIDES
+============================ */
+.ant-progress-text {
+  color: white !important;
+}
+
+.ant-modal .ant-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent !important;
+  height: 200px;
+}
+
+/* ============================
+   SHADOWS & INTERACTION
+============================ */
+.boxShodow:hover {
+  box-shadow: rgba(31, 223, 100, 1) 0px 2px 5px -1px,
+    rgba(31, 223, 100, 1) 0px 1px 3px -1px;
+}
+
+/* ============================
+   INPUT ICON FOCUS EFFECTS
+============================ */
+.userIcon:focus-within #icon,
+.mailIcon:focus-within #icon,
+.textIcon:focus-within #icon {
+  color: #1fdf64;
+}
