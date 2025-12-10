@@ -10,11 +10,11 @@
   
   <img src="./public/readme-images/moj.png" />
 
-  <h2 align="center">Muhammad Osama Javaid - Personal portfolio</h2>
+  <h2 align="center">Jacobo Gutiérrez - Personal portfolio</h2>
 
-This website is fully responsive personal portfolio, <br />Responsive for all devices, built using Nextjs, TailwindCSS only.
+Este sitio web es un portafolio personal totalmente adaptable., <br />Adaptable a todos los dispositivos, creado con Nextjs, TailwindCSS únicamente.
 
-<a href="https://osamajavaid.vercel.app/"><strong>➥ Live Demo</strong></a>
+<a href="https://osamajavaid.vercel.app/"><strong>➥ Demostración en vivo</strong></a>
 
 </div>
 
@@ -22,7 +22,7 @@ This website is fully responsive personal portfolio, <br />Responsive for all de
 
 ### Demo Screeshots
 
-![Osama Portfolio Desktop Demo](./public/readme-images/portfolio.png "Desktop Demo")
+![Demostración de escritorio de Jacobo Portfolio](./public/readme-images/portfolio.png "Desktop Demo")
 
 ### Prerequisites
 
