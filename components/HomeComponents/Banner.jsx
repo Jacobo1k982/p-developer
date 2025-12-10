@@ -31,7 +31,7 @@ const Banner = () => {
                             </div>
                             <Link to='intro' spy={true} smooth={true} duration={500} offset={-50} className="button">Explore</Link>
                         </div>
-                        <div className="w-48 h-52 relative hidden md:block">
+                        <div className="w-52 h-52 relative hidden md:block">
                             <img className='absolute top-10 w-full h-full' src="images/emoji.png" alt="emoji" />
                         </div>*/
                     </div>
@@ -42,22 +42,22 @@ const Banner = () => {
 
                     <div className="flex items-center gap-x-1">
                         <span className='text-base md:text-lg text-Green font-bold'>6+</span>
-                        <span className='text-xs text-Snow'>Proyectos completados</span>
+                        <span className='text-xs text-Snow'>Proyectos Completados</span>
                     </div>
 
                     <div className="flex items-center gap-x-1">
                         <span className='text-base md:text-lg text-Green font-bold'>2+</span>
-                        <span className='text-xs text-Snow'>Freelance Clients</span>
+                        <span className='text-xs text-Snow'>Clientes Autónomos</span>
                     </div>
 
                     <div className="flex items-center gap-x-1">
                         <span className='text-base md:text-lg text-Green font-bold'>2+</span>
-                        <span className='text-xs text-Snow'>Honors & Awards</span>
+                        <span className='text-xs text-Snow'>Honores & Premios</span>
                     </div>
 
                     <div className="flex items-center gap-x-1">
                         <span className='text-base md:text-lg text-Green font-bold'>10+</span>
-                        <span className='text-xs text-Snow'>Opensource Projects</span>
+                        <span className='text-xs text-Snow'>Proyectos de Código abierto</span>
                     </div>
 
                 </div>

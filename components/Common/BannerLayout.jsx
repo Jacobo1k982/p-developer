@@ -1,4 +1,3 @@
-
 const BannerLayout = ({ children }) => {
     return (
         <div
@@ -9,7 +8,7 @@ const BannerLayout = ({ children }) => {
                 backgroundSize: 'cover',
             }}>
             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center w-full h-full bg-gradient-to-t from-MidNightBlack">
-                <div className="bg-Black/5 backdrop-blur-sm w-full h-full">
+                <div className="bg-Black/2 backdrop-blur-sm w-full h-full">
                     {children}
                 </div>
             </div>

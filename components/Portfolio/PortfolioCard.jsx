@@ -4,74 +4,152 @@ const PortfolioCard = ({ data }) => {
     return (
         <div
             className="
-                card_stylings 
+                group
+                relative
                 overflow-hidden 
                 h-full 
                 rounded-2xl
-                bg-[#0f0f0f]/60
-                backdrop-blur-md
-                border border-white/5
-                shadow-lg
-                transition-all duration-300
-                hover:shadow-xl hover:-translate-y-1
+                bg-gradient-to-br from-[#0a0a0a]/95 via-[#0f0f0f]/90 to-[#050505]/95
+                backdrop-blur-2xl
+                border border-white/8
+                shadow-[0_8px_32px_-8px_rgba(0,0,0,0.5)]
+                transition-all duration-700 ease-out
+                hover:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.15)]
+                hover:-translate-y-3
+                hover:border-white/15
+                transform-gpu
+                before:absolute
+                before:inset-0
+                before:bg-gradient-to-br
+                before:from-white/5
+                before:to-transparent
+                before:opacity-0
+                before:transition-opacity
+                before:duration-700
+                hover:before:opacity-100
             "
         >
-            {/* Imagen con overlay elegante */}
-            <div className="relative w-full">
+            {/* Efecto de luz superior */}
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            
+            {/* Contenedor de imagen con efectos mejorados */}
+            <div className="relative w-full overflow-hidden">
+                {/* Capa de brillo base */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                
+                {/* Imagen con efectos de brillo */}
                 <img
                     src={data?.image}
                     alt="portfolio"
-                    className="w-full object-cover h-40 sm:h-52 md:h-64 opacity-40"
+                    className="
+                        w-full h-48 sm:h-56 md:h-64 object-cover
+                        transition-all duration-700 ease-out
+                        group-hover:scale-105
+                        group-hover:brightness-110
+                        group-hover:contrast-105
+                        filter
+                        brightness-100
+                        contrast-100
+                    "
                 />
 
-                {/* Overlay degradado */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-black/40 to-transparent"></div>
+                {/* Overlay degradado mejorado con transparencia variable */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/70 via-[#0a0a0a]/30 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500"></div>
+                
+                {/* Efecto de brillo dinámico */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/30"></div>
+                    <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-white/5 to-white/20"></div>
+                </div>
+                
+                {/* Efecto de luz móvil */}
+                <div className="absolute -inset-full top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full transition-all duration-1500 ease-out"></div>
             </div>
 
-            {/* Contenido */}
+            {/* Contenido con fondo sutil */}
             <div
                 id="arrow"
                 className="
-                    px-6 py-5 
+                    px-7 py-6 
                     transition-all duration-500 ease-in-out
-                    hover:-translate-y-2
+                    group-hover:-translate-y-1
+                    relative
+                    bg-gradient-to-b from-transparent to-[#0a0a0a]/30
                 "
             >
+                {/* Línea decorativa superior */}
+                <div className="absolute top-0 left-7 right-7 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                
                 {/* Título + Icono */}
                 <div className="flex justify-between items-start">
                     <h3 className="
-                        underline italic font-semibold 
-                        text-2xl text-Snow 
+                        font-bold 
+                        text-xl md:text-2xl text-white 
                         leading-tight
+                        tracking-tight
                     ">
                         <a
                             href={data?.url}
                             target="_blank"
                             rel="noreferrer"
-                            className="hover:text-Snow/80 transition"
+                            className="
+                                hover:text-transparent 
+                                hover:bg-clip-text 
+                                hover:bg-gradient-to-r 
+                                hover:from-white 
+                                hover:to-white/80 
+                                transition-all duration-300
+                                relative
+                                after:content-['']
+                                after:absolute
+                                after:bottom-0
+                                after:left-0
+                                after:w-0
+                                after:h-0.5
+                                after:bg-gradient-to-r
+                                after:from-white
+                                after:to-white/60
+                                after:transition-all
+                                after:duration-300
+                                hover:after:w-full
+                            "
                         >
                             {data?.projectName}
                         </a>
                     </h3>
 
-                    {/* Icono */}
+                    {/* Icono mejorado con efectos de brillo */}
                     <a
                         href={data?.url}
                         target="_blank"
                         rel="noreferrer"
                         className="
-                            text-Snow 
-                            transition duration-300 
-                            hover:text-yellow-300 
+                            text-white/70 
+                            transition-all duration-300 
+                            hover:text-white 
                             hover:scale-110 
-                            pt-1
+                            p-1.5
+                            rounded-full
+                            hover:bg-white/10
+                            backdrop-blur-sm
+                            relative
+                            overflow-hidden
+                            before:absolute
+                            before:inset-0
+                            before:bg-gradient-to-br
+                            before:from-white/20
+                            before:to-transparent
+                            before:opacity-0
+                            before:transition-opacity
+                            before:duration-300
+                            hover:before:opacity-100
                         "
                     >
                         <svg
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 496 512"
-                            className="w-6 h-6"
+                            className="w-5 h-5 relative z-10"
                         >
                             <path
                                 fill="currentColor"
@@ -82,16 +160,19 @@ const PortfolioCard = ({ data }) => {
                 </div>
 
                 {/* Detalle del proyecto */}
-                <p className="text-sm text-LightGray/80 mt-3 leading-relaxed">
+                <p className="text-sm text-gray-300/90 mt-4 leading-relaxed">
                     {data?.projectDetail}
                 </p>
 
-                {/* Tecnologías */}
-                <div className="text-sm flex flex-wrap gap-3 py-3">
-                    {data.technologiesUsed.map((item, key) => (
-                        <Badge key={key} title={item.tech} />
+                {/* Tecnologías con fondo mejorado */}
+                <div className="text-sm flex flex-wrap gap-2.5 py-4">
+                    {data?.technologiesUsed?.map((item, key) => (
+                        <Badge key={key} title={item?.tech || item} />
                     ))}
                 </div>
+                
+                {/* Línea decorativa inferior */}
+                <div className="absolute bottom-0 left-7 right-7 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             </div>
         </div>
     )
