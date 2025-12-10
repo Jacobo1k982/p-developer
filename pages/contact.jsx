@@ -1,19 +1,71 @@
 import { useState } from 'react';
 import BannerLayout from '../components/Common/BannerLayout';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
-import { SiUpwork } from 'react-icons/si'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { HiMail, HiUser } from 'react-icons/hi'
 import { BsChatTextFill } from 'react-icons/bs'
-import Fiverr_Icon from '../components/Fiverr_Icon';
 import Footer from '../components/Footer';
-import { Modal } from 'antd';
+import { Modal, message } from 'antd';
 
 const Contact = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    })
+
+    // Reemplaza 'YOUR_FORM_ID' con tu ID de formulario de Formspree
+    const FORMSPREE_FORM_ID = 'YOUR_FORM_ID'
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setIsSubmitting(true)
+
+        try {
+            const response = await fetch(`https://formspree.io/f/mzznjoyg${FORMSPREE_FORM_ID}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+
+            if (response.ok) {
+                // Mostrar mensaje de éxito
+                message.success('¡Mensaje enviado con éxito!')
+                // Limpiar formulario
+                setFormData({
+                    name: '',
+                    email: '',
+                    message: ''
+                })
+                // Abrir modal de éxito
+                setIsOpen(true)
+            } else {
+                // Mostrar mensaje de error
+                message.error('Hubo un error al enviar el mensaje. Inténtalo de nuevo.')
+            }
+        } catch (error) {
+            console.error('Error al enviar el formulario:', error)
+            message.error('Hubo un error al enviar el mensaje. Inténtalo de nuevo.')
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
 
     return (
         <BannerLayout>
-            <div className=" px-4 py-2">
+            <div className="px-4 py-2">
                 <div className="my-6 text-Snow flex flex-col gap-y-5">
                     <h1 className='text-lg font-bold'>Información de contacto</h1>
                     <div className="flex flex-col md:flex-row items-center gap-5 text-xs">
@@ -53,17 +105,24 @@ const Contact = () => {
                     <a className='hover:scale-125 ease-in-out duration-700' href="https://www.linkedin.com/in/jacobo-gutierrez/" target='_blank' rel="noreferrer"><FaLinkedin /></a>
                 </div>
 
-
                 <div className="my-12 w-full h-auto text-Snow">
                     <h1 className='text-lg font-bold'>Contáctanos</h1>
                     <div className="mt-4 py-8 px-8 bg-EveningBlack rounded-xl text-sm">
-                        <div>
+                        <form onSubmit={handleSubmit}>
                             <div className="flex flex-col w-full">
                                 <div className="userIcon relative mb-6">
                                     <div id="icon" className="absolute inset-y-0 left-0 flex items-center pl-3 text-xl pointer-events-none">
                                         <HiUser />
                                     </div>
-                                    <input type="text" className="input_stylings" placeholder="Nombre" />
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        required
+                                        className="input_stylings"
+                                        placeholder="Nombre"
+                                    />
                                 </div>
                             </div>
 
@@ -72,7 +131,15 @@ const Contact = () => {
                                     <div id="icon" className="absolute inset-y-0 left-0 flex items-center text-xl pl-3 pointer-events-none">
                                         <HiMail />
                                     </div>
-                                    <input type="text" className="input_stylings" placeholder="Email" />
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        required
+                                        className="input_stylings"
+                                        placeholder="Email"
+                                    />
                                 </div>
                             </div>
 
@@ -81,36 +148,60 @@ const Contact = () => {
                                     <div id="icon" className="absolute top-3 left-0 flex items-center text-lg pl-3 pointer-events-none">
                                         <BsChatTextFill />
                                     </div>
-                                    <textarea rows={6} cols={50} className="input_stylings" placeholder="Mensaje" />
+                                    <textarea
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        required
+                                        rows={6}
+                                        cols={50}
+                                        className="input_stylings"
+                                        placeholder="Mensaje"
+                                    />
                                 </div>
                             </div>
 
                             <div className="my-4">
-                                <button onClick={() => setIsOpen(true)} className="button"> ENVIAR MENSAJE </button>
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className={`button ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                >
+                                    {isSubmitting ? 'ENVIANDO...' : 'ENVIAR MENSAJE'}
+                                </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            {/* success modal */}
+
+            {/* Modal de éxito */}
             <Modal
                 className='card_stylings backdrop-blur-3xl drop-shadow-2xl'
-                // wrapClassName='bg-red-800'
                 centered
                 open={isOpen}
                 footer={null}
-                closable={false}
-                onOk={() => setIsOpen(false)}
+                closable={true}
                 onCancel={() => setIsOpen(false)}
             >
-                <div className='flex flex-col items-center justify-center'>
-                    <h1 className='text-Green font-bold text-2xl'>In Progress</h1>
-                    <a className='underline text-Snow' target='_blank' href='https://github.com/osamajavaid/portfolio'>Be the one to integrate this!</a>
+                <div className='flex flex-col items-center justify-center py-4'>
+                    <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
+                        <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h1 className='text-white font-bold text-xl mb-2'>¡Mensaje Enviado!</h1>
+                    <p className='text-gray-300 text-center'>Gracias por contactarme. Te responderé lo antes posible.</p>
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        className="mt-4 px-6 py-2 bg-green-500/20 hover:bg-green-500/30 text-white rounded-lg transition-colors duration-200"
+                    >
+                        Cerrar
+                    </button>
                 </div>
             </Modal>
             <Footer />
         </BannerLayout>
-
     )
 }
 
