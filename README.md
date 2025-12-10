@@ -20,19 +20,19 @@ Este sitio web es un portafolio personal totalmente adaptable., <br />Adaptable 
 
 <br />
 
-### Demo Screeshots
+### Capturas de pantalla de demostración
 
-![Demostración de escritorio de Jacobo Portfolio](./public/readme-images/portfolio.png "Desktop Demo")
+![Demostración de escritorio de Jacobo Portfolio](./public/readme-images/portfolio.png "Demostración de escritorio")
 
-### Prerequisites
+### Prerrequisitos
 
-Before you begin, ensure you have met the following requirements:
+Antes de comenzar, asegúrese de cumplir los siguientes requisitos:
 
-- [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
+- [Git](https://git-scm.com/downloads "Descargar Git") Debe estar instalado en su sistema operativo.
 
-### Run Locally
+### Ejecutar localmente
 
-To run **portfolio** locally, run this command on your git bash:
+Para ejecutar **portfolio** localmente, ejecute este comando en su bash git:
 
 Linux and macOS:
 
@@ -46,6 +46,6 @@ Windows:
 git clone https://github.com/Jacobo1k982/p-developer.git
 ```
 
-### License
+### Licencia
 
-This project is **free to use** and does not contains any license.
+Este proyecto es de **uso gratuito** y no contiene ninguna licencia.
