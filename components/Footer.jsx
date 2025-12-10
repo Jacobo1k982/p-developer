@@ -52,7 +52,7 @@ const Footer = () => {
                 {/* ---- MADE BY ---- */}
                 <div className="flex items-center">
                     <a
-                        href="https://www.fiverr.com/codeworthy"
+                        href="https://www.jacana-dev.com"
                         target="_blank"
                         rel="noreferrer"
                         className="

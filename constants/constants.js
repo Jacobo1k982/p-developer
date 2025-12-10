@@ -1,6 +1,6 @@
 export const NAME = 'Jacobo Gutiérrez Rodríguez';
 
-export const DESIGNATION = `Developer Full Stack | ReactJS | NextJS | NodeJS | TypeScript | JavaScript `;
+export const DESIGNATION = `Developer Full Stack | ReactJS | NextJS | NodeJS | MongoDB | MySQL | REST API | Redux | TypeScript | JavaScript `;
 
 export const DETAILS = {
   Residence: 'Costa Rica',
@@ -55,6 +55,8 @@ export const TECH_STACK = [
   'Visual Studio Code',
   'PhotoShop',
   'UX/UI Design',
+  'Bootstrap',
+  'Express.JS',
 ];
 
 export const CONTACTS = {
