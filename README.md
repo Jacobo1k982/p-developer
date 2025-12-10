@@ -10,11 +10,11 @@
   
   <img src="./public/readme-images/moj.png" />
 
-  <h2 align="center">Jacobo Gutiérrez - Personal portfolio</h2>
+  <h2 align="center">Jacobo Gutiérrez - Portafolio-Personal</h2>
 
 Este sitio web es un portafolio personal totalmente adaptable., <br />Adaptable a todos los dispositivos, creado con Nextjs, TailwindCSS únicamente.
 
-<a href="https://osamajavaid.vercel.app/"><strong>➥ Demostración en vivo</strong></a>
+<a href="https://cv-desarrolloweb.netlify.app/"><strong>➥ Demostración en vivo</strong></a>
 
 </div>
 
