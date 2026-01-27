@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "es2020", // Más moderno que es5 (Next.js lo transpila bien)
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true, // Activar full strict (recomendado)
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node", // Mejor para Next.js + App Router
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve", // OBLIGATORIO en Next.js (no cambiar a react-jsx)
+    "incremental": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts" // Tipos automáticos de rutas de Next.js
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

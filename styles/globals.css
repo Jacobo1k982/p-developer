@@ -149,3 +149,63 @@ body {
 .textIcon:focus-within #icon {
   color: #1fdf64;
 }
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-rotate-slow {
+  animation: rotate-slow 40s linear infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.8; transform: scale(1.05); }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+@keyframes glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-4px, 4px); }
+  40%  { transform: translate(-4px, -4px); }
+  60%  { transform: translate(4px, 4px); }
+  80%  { transform: translate(4px, -4px); }
+  100% { transform: translate(0); }
+}
+
+.animate-glitch {
+  animation: glitch 1.2s infinite linear alternate-reverse;
+}
+
+.animate-glitch-low {
+  animation: glitch 2.4s infinite linear alternate-reverse;
+}
+
+.animate-glitch-high {
+  animation: glitch 0.6s infinite linear alternate-reverse;
+}
+
+.animate-pulse-slow {
+  animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes slow-pulse {
+  0%, 100% { opacity: 0.25; }
+  50%      { opacity: 0.45; }
+}
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes rotate-slow-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+.animate-slow-pulse    { animation: slow-pulse 18s ease-in-out infinite; }
+.animate-rotate-slow   { animation: rotate-slow 40s linear infinite; }
+.animate-rotate-slow-reverse { animation: rotate-slow-reverse 55s linear infinite; }
+
+.animate-pulse-slow {
+  animation: pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
