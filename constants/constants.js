@@ -3,9 +3,9 @@ export const NAME = 'Jacobo Gutiérrez Rodríguez';
 export const DESIGNATION = `Developer Full Stack | ReactJS | NextJS | NodeJS | MongoDB | MySQL | REST API | Redux | TypeScript | JavaScript `;
 
 export const DETAILS = {
-  Residence: 'Costa Rica',
-  City: 'San José',
-  Age: '43',
+  Residencia: 'Lourdes, San Pedro, Montes de Oca',
+  Provincia: 'San José',
+  Edad: '44',
 };
 
 export const SKILLS = [
@@ -62,6 +62,7 @@ export const TECH_STACK = [
 export const CONTACTS = {
   EMAIL: 'askmecr@gmail.com',
   PHONE: '(+506) 64541700',
+  WHATSAPP: '(+506) 87905876',
 };
 export const SOCIAL_LINKS = {
   GITHUB: 'https://github.com/Jacobo1k982',

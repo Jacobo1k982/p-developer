@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaDownload, FaFacebook, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaDownload, FaGithub, FaLinkedin } from 'react-icons/fa';
 import Contact from './Contact';
 import Download from './Download';
 import Languages from './Languages';
@@ -13,37 +13,53 @@ import Jacobo from '../../../public/images/hero.png';
 const Intro = () => {
   return (
     <>
-      {/* fixed at top */}
-      <div className='headerr z-50 absolute bg-MidNightBlack backdrop-blur-sm inset-y-0 h-48 top-2 flex items-center justify-center w-full flex-col px-4 gap-y-4'>
-        <Image className='w-20 h-20 rounded-full' src={Jacobo} alt='profile picture' />
-        <div className='flex flex-col items-center justify-center'>
-          <span className='text-gray-300 text-base font-bold break-normal'>{NAME}</span>
-          <span className='text-sm text-LightGray text-center mt-2'>{DESIGNATION}</span>
+      {/* Header fijo - estilo GitHub */}
+      <div className="absolute top-0 inset-x-0 z-50 h-48 flex flex-col items-center justify-center bg-white dark:bg-[#0d1117] border-b border-gray-200 dark:border-[#30363d] px-4">
+        <Image
+          className="w-20 h-20 rounded-full border border-gray-300 dark:border-[#30363d]"
+          src={Jacobo}
+          alt="profile picture"
+        />
+
+        <div className="mt-3 text-center">
+          <p className="text-base font-semibold text-gray-900 dark:text-[#c9d1d9]">
+            {NAME}
+          </p>
+          <p className="text-sm text-gray-500 dark:text-[#8b949e] mt-1">
+            {DESIGNATION}
+          </p>
         </div>
       </div>
 
-      {/* middle components */}
-      <div className='beech z-20 flex flex-col overflow-y-scroll pt-48 top-48 space-y-6 divide-y divide-white overflow-x-hidden no-scrollbar px-4'>
-        <Location />
-        <Languages />
-        <Skills />
-        <Tools />
-        <Contact />
-        <Download icon={<FaDownload />} />
+      {/* Contenido central - tarjetas tipo GitHub */}
+      <div className="z-20 pt-48 pb-12 px-4 space-y-6 overflow-y-auto no-scrollbar bg-gray-50 dark:bg-[#0d1117]">
+        <div className="space-y-6 divide-y divide-gray-200 dark:divide-[#30363d]">
+          <Location />
+          <Languages />
+          <Skills />
+          <Tools />
+          <Contact />
+          <Download icon={<FaDownload />} />
+        </div>
       </div>
 
-      {/* fixed at bottom */}
-      <div className='footer absolute flex justify-center space-x-6 text-xl items-center bottom-0 z-50 h-10 w-full bg-MidNightBlack text-Snow'>
-        <Link href={SOCIAL_LINKS.GITHUB} target='_blank' rel='noreferrer' className=''>
+      {/* Footer fijo - enlaces sociales estilo GitHub */}
+      <div className="absolute bottom-0 inset-x-0 z-50 h-12 flex items-center justify-center space-x-6 bg-white dark:bg-[#0d1117] border-t border-gray-200 dark:border-[#30363d] text-gray-600 dark:text-[#8b949e] text-xl">
+        <Link
+          href={SOCIAL_LINKS.GITHUB}
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-black dark:hover:text-white transition-colors"
+        >
           <FaGithub />
         </Link>
-        {/* <Link href={SOCIAL_LINKS.TWITTER} target='_blank' rel='noreferrer' className=''>
-          <FaTwitter />
-        </Link> */}
-        {/* <Link href={SOCIAL_LINKS.FACEBOOK} target='_blank' rel='noreferrer' className=''>
-          <FaFacebook />
-        </Link> */}
-        <Link href={SOCIAL_LINKS.LINKEDIN} target='_blank' rel='noreferrer' className=''>
+
+        <Link
+          href={SOCIAL_LINKS.LINKEDIN}
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-[#0a66c2] transition-colors"
+        >
           <FaLinkedin />
         </Link>
       </div>

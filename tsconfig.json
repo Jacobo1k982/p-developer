@@ -36,7 +36,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts" // Tipos automáticos de rutas de Next.js
-  ],
+, "components/Common/CardLayout.tsx", "components/Common/Intro/index.jsx"  ],
   "exclude": [
     "node_modules"
   ]

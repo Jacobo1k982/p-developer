@@ -5,7 +5,7 @@ import Recommendations from '../components/HomeComponents/Recommendations/Recomm
 import ClientReviews from '../components/HomeComponents/ClientReviews/ClientReviews';
 const home = () => {
     return (
-        <div className="Home-Page -z-10">
+        <div className="Home-Page -z-10 bg-white dark:bg-[#0d1117]">
             <Banner />
             <MyExpertise />
             <Recommendations />
