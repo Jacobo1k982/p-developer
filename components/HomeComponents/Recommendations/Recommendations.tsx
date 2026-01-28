@@ -4,6 +4,15 @@ import RecommendationCard from "./RecommendationCard"
 import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
 import ParagraphSkeleton from "@/components/Common/ParagraphSkeleton"
+type Recommendation = {
+    id?: string;
+    title: string;
+    // add the other fields used by RecommendationCard
+};
+
+interface Props {
+    data?: Recommendation[];
+}
 
 const Recommendations = () => {
     const { isLoading, error, data } = useQuery({
