@@ -3,99 +3,131 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import Link from 'next/link'
+import { Github } from 'lucide-react'
 
 const Banner = () => {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-16 md:py-10 text-center bg-white dark:bg-[#0d1117]">
-      {/* Contenido principal */}
+    <div className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 py-16 md:py-0 bg-[#0d1117] overflow-hidden">
+      {/* Fondo sutil con gradiente */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#161b22]/40 via-transparent to-[#0d1117]" />
+
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="w-full max-w-5xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+        className="relative z-10 w-full max-w-6xl mx-auto"
       >
-        {/* Avatar + Intro */}
-        <div className="mb-12 flex flex-col items-center gap-8 md:flex-row md:items-center md:justify-center md:gap-12">
-          {/* Avatar */}
+        <div className="flex flex-col items-center md:flex-row md:items-start md:justify-between gap-12 md:gap-16 lg:gap-24">
+          {/* Columna izquierda - Avatar + glow */}
           <motion.div
-            initial={{ scale: 0.92, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="relative h-40 w-40 md:h-56 md:w-56 flex-shrink-0"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="relative flex-shrink-0"
           >
-            <div className="h-full w-full overflow-hidden rounded-full border-4 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 shadow-lg dark:shadow-2xl">
+            {/* Glow background */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/10 to-transparent blur-3xl opacity-60 animate-pulse-slow" />
+
+            <div className="relative h-56 w-56 md:h-64 md:w-64 rounded-full border-4 border-[#30363d] bg-[#161b22] shadow-2xl overflow-hidden">
               <img
                 src="./images/hero.png"
-                alt="Jacobo Gutiérrez - Full-Stack Developer"
-                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                alt="Jacobo Gutiérrez"
+                className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.08]"
               />
+              {/* Badge sutil */}
+              <div className="absolute -bottom-1.5 -right-1.5 bg-[#238636] text-white text-xs font-semibold px-3 py-1 rounded-full border-2 border-[#0d1117] shadow-md">
+                Available
+              </div>
             </div>
           </motion.div>
 
-          {/* Texto principal */}
-          <div className="text-center md:text-left">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white tracking-tight">
+          {/* Columna derecha - Textos */}
+          <div className="flex-1 text-center md:text-left space-y-6 md:space-y-8">
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.9 }}
+              className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-[-0.04em] text-white"
+            >
               Jacobo Gutiérrez
-            </h1>
+            </motion.h1>
 
-            <p className="mt-4 text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-medium">
+            <motion.p
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 0.9 }}
+              className="text-2xl md:text-3xl font-medium text-[#8b949e] tracking-wide"
+            >
               Full-Stack Developer
-            </p>
+            </motion.p>
 
-            <p className="mt-6 max-w-2xl mx-auto md:mx-0 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-              Construyo productos digitales escalables y de alto rendimiento. Especializado en Next.js, React, TypeScript y sistemas distribuidos. Apasionado por el rendimiento, la UX y el open source.
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.9 }}
+              className="text-lg md:text-xl leading-relaxed text-[#8b949e] max-w-2xl"
+            >
+              Creo aplicaciones modernas, rápidas y escalables.<br className="hidden sm:inline" />
+              Next.js · TypeScript · Tailwind · Sistemas distribuidos · Clean Architecture
+            </motion.p>
 
-            <div className="mt-10 flex flex-wrap justify-center md:justify-start gap-5">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.75, duration: 0.9 }}
+              className="flex flex-wrap justify-center md:justify-start gap-5 pt-4"
+            >
               <Button
                 size="lg"
-                className="rounded-full px-8 py-4 text-base font-semibold"
+                className="rounded-full px-8 py-6 text-base font-medium bg-[#238636] hover:bg-[#2ea043] text-white shadow-lg shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-900/30 active:scale-[0.97]"
               >
-                Explorar Portafolio
+                Ver Portafolio
               </Button>
 
-              <a
-                href="https://github.com/Jacobo1k982"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button
+                size="lg"
+                variant="outline"
+                asChild={false}
+                className="rounded-full px-8 py-6 text-base font-medium border-[#30363d] text-[#c9d1d9] hover:bg-[#161b22] hover:text-white transition-all duration-300 group"
               >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="rounded-full px-8 py-4 text-base font-semibold border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
+                <a
+                  href="https://github.com/Jacobo1k982"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
                 >
-                  Ver GitHub
-                </Button>
-              </a>
-            </div>
+                  <Github className="h-5 w-5" />
+                  GitHub
+                </a>
+              </Button>
+            </motion.div>
           </div>
         </div>
 
-        {/* Stats estilo GitHub cards */}
+        {/* Stats - estilo GitHub contrib graph cards */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="grid grid-cols-2 md:flex md:justify-center gap-6 md:gap-10 lg:gap-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1, duration: 0.9 }}
+          className="mt-16 md:mt-24 grid grid-cols-2 sm:grid-cols-4 gap-5 md:gap-8"
         >
           {[
-            { value: '6+', label: 'Proyectos Completados' },
-            { value: '2+', label: 'Clientes Independientes' },
-            { value: '2+', label: 'Reconocimientos' },
+            { value: '6+', label: 'Proyectos destacados' },
+            { value: '2+', label: 'Clientes freelance' },
             { value: '10+', label: 'Contribuciones OSS' },
+            { value: '2024–26', label: 'Año activo' },
           ].map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7 + i * 0.15 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1 + i * 0.15, duration: 0.7 }}
             >
-              <Card className="px-8 py-6 text-center transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
-                <div className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+              <Card className="bg-[#161b22] border-[#30363d] hover:border-[#444c56] transition-colors duration-300 py-6 px-5 text-center shadow-sm">
+                <div className="text-2xl md:text-4xl font-bold text-white tracking-tight">
                   {stat.value}
                 </div>
-                <div className="mt-2 text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <div className="mt-3 text-sm uppercase tracking-wider text-[#8b949e] font-medium">
                   {stat.label}
                 </div>
               </Card>
