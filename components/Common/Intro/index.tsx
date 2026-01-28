@@ -9,8 +9,12 @@ import Skills from './Skills';
 import Image from 'next/image';
 import { NAME, DESIGNATION, SOCIAL_LINKS } from '../../../constants/constants';
 import Jacobo from '../../../public/images/hero.png';
+import React from 'react';
 
-const Intro = () => {
+const Intro: React.FC<{
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ isOpen, setIsOpen }) => {
   return (
     <>
       {/* Header fijo - estilo GitHub */}

@@ -1,6 +1,6 @@
 'use client';
 
-import Intro from '../components/Common/Intro';
+import Intro from '../components/Common/Intro/index';
 import Nav from '../components/Common/Nav/Nav';
 import { FaBars, FaMousePointer } from 'react-icons/fa';
 import { SlOptionsVertical } from 'react-icons/sl';
