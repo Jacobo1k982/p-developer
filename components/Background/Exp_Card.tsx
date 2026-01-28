@@ -3,20 +3,8 @@
 import React from 'react'
 import CardLayout from '@/components/Common/CardLayout'
 
-interface ExperienceData {
-    title?: string
-    role?: string
-    url?: string
-    desc?: string
-    year?: string
-    location?: string
-}
 
-interface ExpCardProps {
-    data: ExperienceData
-}
-
-const Exp_Card = ({ data }: ExpCardProps) => {
+const Exp_Card = ({ data }: { data?: any }) => {
     return (
         <CardLayout>
             <div
