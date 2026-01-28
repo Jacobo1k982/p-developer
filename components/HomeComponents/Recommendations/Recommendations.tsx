@@ -4,18 +4,18 @@ import RecommendationCard from "./RecommendationCard"
 import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
 import ParagraphSkeleton from "@/components/Common/ParagraphSkeleton"
-type Recommendation = {
-    id?: string;
-    title: string;
-    // add the other fields used by RecommendationCard
-};
 
-interface Props {
-    data?: Recommendation[];
+interface Recommendation {
+    id?: string;
+    name: string;
+    image?: string;
+    facebookURL?: string;
+    designation?: string;
+    view?: string;
 }
 
 const Recommendations = () => {
-    const { isLoading, error, data } = useQuery({
+    const { isLoading, error, data } = useQuery<Recommendation[]>({
         queryKey: ["recommendations"],
         queryFn: async () => {
             const { data } = await axios.get("/api/recommendations")
@@ -34,11 +34,11 @@ const Recommendations = () => {
                     [1, 2, 3, 4].map((_, i) => (
                         <ParagraphSkeleton
                             key={i}
-                            className={"p-8 h-full w-full relative bg-[#161b22] rounded-md border border-[#30363d]"}
+                            className={"p-8 h-full w-full relative"}
                         />
                     ))
                 ) : (
-                    data?.map((item, key) => (
+                    data?.map((item: Recommendation, key: number) => (
                         <RecommendationCard key={key} data={item} />
                     ))
                 )}
