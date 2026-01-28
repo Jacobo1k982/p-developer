@@ -5,133 +5,127 @@ import { ExternalLink } from 'lucide-react'
 import Badge from '@/components/Badge'
 
 interface PortfolioData {
-    image?: string
-    url?: string
-    projectName?: string
-    projectDetail?: string
-    technologiesUsed?: Array<{ tech?: string } | string>
+  image?: string
+  url?: string
+  projectName?: string
+  projectDetail?: string
+  technologiesUsed?: Array<{ tech?: string } | string>
 }
 
 interface PortfolioCardProps {
-    data: PortfolioData
+  data: PortfolioData
 }
 
 const PortfolioCard = ({ data }: PortfolioCardProps) => {
-    const getTechName = (item: { tech?: string } | string) => {
-        if (typeof item === 'string') return item
-        return item?.tech || ''
-    }
+  const getTechName = (item: { tech?: string } | string) =>
+    typeof item === 'string' ? item : item?.tech || ''
 
-    return (
-        <div
-            className="
-        group
-        relative
-        overflow-hidden 
-        h-full 
-        rounded-lg
-        bg-white dark:bg-gray-800
-        border border-gray-200 dark:border-gray-700
-        shadow-sm
+  return (
+    <div
+      className="
+        group relative overflow-hidden rounded-xl
+        bg-[#161b22] border border-[#30363d]
+        shadow-sm hover:shadow-md hover:border-[#444c56]
         transition-all duration-300 ease-out
-        hover:shadow-lg
-        hover:-translate-y-2
-        hover:border-gray-300 dark:hover:border-gray-600
+        h-full flex flex-col
       "
-        >
-            {/* Contenedor de imagen */}
-            <div className="relative w-full overflow-hidden bg-gray-100 dark:bg-gray-900">
-                <img
-                    src={data?.image}
-                    alt="portfolio"
-                    className="
-            w-full h-48 sm:h-56 md:h-64 object-cover
-            transition-all duration-300 ease-out
-            group-hover:scale-105
-          "
-                />
-
-                {/* Overlay degradado */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-100"></div>
-            </div>
-
-            {/* Contenido */}
-            <div
-                className="
-          px-6 py-5 
-          transition-all duration-300 ease-in-out
-          group-hover:-translate-y-1
-        "
-            >
-                {/* Título + Icono */}
-                <div className="flex justify-between items-start gap-4">
-                    <h3 className="
-            font-semibold 
-            text-lg md:text-xl text-gray-900 dark:text-gray-100 
-            leading-tight
-            flex-1
-          ">
-                        <a
-                            href={data?.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="
-                hover:text-gray-600 dark:hover:text-gray-300 
-                transition-all duration-300
-                relative
-                after:content-['']
-                after:absolute
-                after:bottom-0
-                after:left-0
-                after:w-0
-                after:h-0.5
-                after:bg-gray-900 dark:after:bg-gray-100
-                after:transition-all
-                after:duration-300
-                hover:after:w-full
-              "
-                        >
-                            {data?.projectName}
-                        </a>
-                    </h3>
-
-                    {/* Icono de enlace externo */}
-                    <a
-                        href={data?.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="
-              text-gray-500 dark:text-gray-400
-              transition-all duration-300 
-              hover:text-gray-900 dark:hover:text-gray-100 
-              hover:scale-110 
-              p-2
-              rounded-full
-              hover:bg-gray-100 dark:hover:bg-gray-700
-              flex-shrink-0
+    >
+      {/* Imagen con overlay GitHub-style */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#0d1117]">
+        {data?.image ? (
+          <img
+            src={data.image}
+            alt={data.projectName || 'Project screenshot'}
+            className="
+              w-full h-full object-cover 
+              transition-transform duration-500 ease-out
+              group-hover:scale-105
             "
-                        aria-label="Ver proyecto"
-                    >
-                        <ExternalLink size={18} />
-                    </a>
-                </div>
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-[#8b949e] text-sm">
+            Sin imagen
+          </div>
+        )}
 
-                {/* Detalle del proyecto */}
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-3 leading-relaxed">
-                    {data?.projectDetail}
-                </p>
+        {/* Overlay sutil + gradiente bottom */}
+        <div className="
+          absolute inset-0 bg-gradient-to-t 
+          from-black/60 via-black/10 to-transparent 
+          opacity-80 group-hover:opacity-90 
+          transition-opacity duration-300
+        " />
+      </div>
 
-                {/* Tecnologías */}
-                {data?.technologiesUsed && data.technologiesUsed.length > 0 && (
-                    <div className="text-sm flex flex-wrap gap-2 mt-4">
-                        {data.technologiesUsed.map((item, key) => (
-                            <Badge key={key} title={getTechName(item)} />
-                        ))}
-                    </div>
-                )}
-            </div>
+      {/* Contenido */}
+      <div className="flex flex-col flex-1 p-5 md:p-6">
+        {/* Título + enlace externo */}
+        <div className="flex items-start justify-between gap-4 mb-3">
+          <h3 className="
+            text-lg font-semibold leading-tight 
+            text-[#c9d1d9] group-hover:text-[#c9d1d9]/90
+            transition-colors
+          ">
+            <a
+              href={data?.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                hover:text-[#58a6ff] transition-colors duration-200
+                underline underline-offset-4 decoration-[#58a6ff]/0 
+                hover:decoration-[#58a6ff]/60
+              "
+            >
+              {data?.projectName || 'Proyecto sin nombre'}
+            </a>
+          </h3>
+
+          {data?.url && (
+            <a
+              href={data.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Ver ${data.projectName || 'proyecto'} en vivo`}
+              className="
+                text-[#8b949e] hover:text-[#58a6ff] 
+                transition-colors p-1.5 rounded-md
+                hover:bg-[#21262d]
+              "
+            >
+              <ExternalLink size={18} />
+            </a>
+          )}
         </div>
-    )
+
+        {/* Descripción */}
+        <p className="
+          text-sm text-[#8b949e] leading-relaxed 
+          line-clamp-3 mb-4 flex-1
+        ">
+          {data?.projectDetail || 'Descripción breve del proyecto...'}
+        </p>
+
+        {/* Tecnologías - estilo GitHub tags */}
+        {data?.technologiesUsed && data.technologiesUsed.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {data.technologiesUsed.map((item, idx) => (
+              <Badge
+                key={idx}
+                title={getTechName(item)}
+                className="
+                  text-xs px-2.5 py-1 
+                  bg-[#21262d] text-[#c9d1d9] 
+                  border border-[#30363d] rounded-full
+                  hover:bg-[#30363d] transition-colors
+                "
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
 
 export default PortfolioCard

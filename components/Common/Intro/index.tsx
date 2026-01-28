@@ -8,7 +8,6 @@ import Tools from '@/components/Common/Intro/Tools';
 import Skills from '@/components/Common/Intro/Skills';
 import Image from 'next/image';
 import { NAME, DESIGNATION, SOCIAL_LINKS } from '@/constants/constants';
-import Jacobo from '@/public/images/hero.png';
 import React from 'react';
 
 const Intro: React.FC<{
@@ -17,7 +16,7 @@ const Intro: React.FC<{
 }> = ({ isOpen, setIsOpen }) => {
   return (
     <>
-      {/* Header fijo - estilo GitHub */}
+      {/* Header fijo */}
       <div className="
   absolute top-0 inset-x-0 z-50
   h-60
@@ -35,22 +34,18 @@ const Intro: React.FC<{
         object-cover
         shadow-md
       "
-            src={Jacobo}
+            src="/images/hero.png"           // ← cambio clave
             alt={`${NAME} profile`}
             width={96}
             height={96}
+            priority                         // ayuda a que cargue rápido
           />
 
           <div className="mt-3 text-center">
-            <p className="
-        text-lg font-semibold
-        text-[#c9d1d9]
-      ">
+            <p className="text-lg font-semibold text-[#c9d1d9]">
               {NAME}
             </p>
-            <p className="
-        text-xs text-[#8b949e] mt-0.5
-      ">
+            <p className="text-xs text-[#8b949e] mt-0.5">
               {DESIGNATION}
             </p>
           </div>
