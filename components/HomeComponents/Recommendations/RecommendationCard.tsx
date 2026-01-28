@@ -3,7 +3,7 @@
 import React from 'react'
 import CardLayout from '@/components/Common/CardLayout'
 
-const RecommendationCard = ({ data }) => {
+const RecommendationCard = ({ data }: { data: any} ) => {
     return (
         <CardLayout>
             <div className="p-8 h-full relative transition-all duration-200 antialiased">
