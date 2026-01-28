@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { FaDownload, FaGithub, FaLinkedin } from 'react-icons/fa';
-import Contact from './Contact';
-import Download from './Download';
-import Languages from './Languages';
-import Location from './Location';
-import Tools from './Tools';
-import Skills from './Skills';
+import Contact from '@/components/Common/Intro/Contact';
+import Download from '@/components/Common/Intro/Download';
+import Languages from '@/components/Common/Intro/Languages';
+import Location from '@/components/Common/Intro/Location';
+import Tools from '@/components/Common/Intro/Tools';
+import Skills from '@/components/Common/Intro/Skills';
 import Image from 'next/image';
-import { NAME, DESIGNATION, SOCIAL_LINKS } from '../../../constants/constants';
-import Jacobo from '../../../public/images/hero.png';
+import { NAME, DESIGNATION, SOCIAL_LINKS } from '@/constants/constants';
+import Jacobo from '@/public/images/hero.png';
 import React from 'react';
 
 const Intro: React.FC<{
@@ -18,7 +18,7 @@ const Intro: React.FC<{
   return (
     <>
       {/* Header fijo - estilo GitHub */}
-      <div className="absolute top-0 inset-x-0 z-50 h-48 flex flex-col items-center justify-center bg-white dark:bg-[#0d1117] border-b border-gray-200 dark:border-[#30363d] px-4">
+      <div className="absolute top-2 inset-x-0 z-50 h-48 flex flex-col items-center justify-center bg-white dark:bg-[#0d1117] border-b border-gray-200 dark:border-[#30363d] px-4">
         <Image
           className="w-20 h-20 rounded-full border border-gray-300 dark:border-[#30363d]"
           src={Jacobo}
