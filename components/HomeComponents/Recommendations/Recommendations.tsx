@@ -1,7 +1,9 @@
+'use client';
+
 import RecommendationCard from "./RecommendationCard"
 import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
-import ParagraphSkeleton from "../../Common/ParagraphSkeleton"
+import ParagraphSkeleton from "@/components/Common/ParagraphSkeleton"
 
 const Recommendations = () => {
     const { isLoading, error, data } = useQuery({
@@ -14,7 +16,7 @@ const Recommendations = () => {
 
     return (
         <>
-            <div className="px-2 md:px-8 py-4 text-lg font-bold text-Snow">
+            <div className="px-2 md:px-8 py-4 text-lg font-bold text-[#c9d1d9] antialiased">
                 Recomendaciones
             </div>
 
@@ -23,7 +25,7 @@ const Recommendations = () => {
                     [1, 2, 3, 4].map((_, i) => (
                         <ParagraphSkeleton
                             key={i}
-                            className={"p-8 h-full w-full relative"}
+                            className={"p-8 h-full w-full relative bg-[#161b22] rounded-md border border-[#30363d]"}
                         />
                     ))
                 ) : (

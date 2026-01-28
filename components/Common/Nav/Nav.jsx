@@ -1,3 +1,5 @@
+'use client';
+
 import { ImCross } from 'react-icons/im'
 import { FiAward } from 'react-icons/fi'
 import { FaHandshake } from 'react-icons/fa'
@@ -13,22 +15,24 @@ const Nav = ({ setIsOpen, isOpen }) => {
                 className="
           fixed inset-y-0 right-0 z-50 
           w-72 lg:w-80 
-          bg-[#0d1117] text-gray-300 
+          bg-[#161b22] text-[#c9d1d9] 
           border-l border-[#30363d]
-          shadow-2xl shadow-black/60
+          shadow-lg
           flex flex-col
+          antialiased
         "
             >
                 {/* Header con botón cerrar */}
-                <div className="flex items-center justify-between px-5 py-3 border-b border-[#21262d]">
-                    <span className="text-sm font-semibold text-gray-400">Menú</span>
+                <div className="flex items-center justify-between px-5 py-3 border-b border-[#30363d]">
+                    <span className="text-sm font-semibold text-[#8b949e]">Menú</span>
                     <button
                         onClick={() => setIsOpen(false)}
                         className="
               p-1.5 rounded-md 
-              text-gray-400 hover:text-gray-200 
+              text-[#8b949e] hover:text-[#c9d1d9] 
               hover:bg-[#21262d] 
-              transition-colors duration-100
+              transition-colors duration-200
+              cursor-pointer
             "
                         aria-label="Cerrar menú"
                     >
@@ -37,7 +41,7 @@ const Nav = ({ setIsOpen, isOpen }) => {
                 </div>
 
                 {/* Lista de navegación */}
-                <nav className="flex-1 px-3 py-4 flex flex-col gap-1">
+                <nav className="flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto">
                     <NavItem
                         setIsOpen={setIsOpen}
                         NavRoute="/"
@@ -65,7 +69,7 @@ const Nav = ({ setIsOpen, isOpen }) => {
                 </nav>
 
                 {/* Opcional: footer pequeño */}
-                <div className="px-5 py-4 text-xs text-gray-500 border-t border-[#21262d]">
+                <div className="px-5 py-4 text-xs text-[#484f58] border-t border-[#30363d]">
                     © {new Date().getFullYear()} Desarrollado por Jacobo Gutiérrez
                 </div>
             </div>

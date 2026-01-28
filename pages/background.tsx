@@ -15,7 +15,7 @@ interface Education {
     description?: string
 }
 
-interface Experience {
+type ExperienceData = {
     company?: string
     position?: string
     department?: string
@@ -27,7 +27,7 @@ interface Experience {
 
 interface BackgroundData {
     eduCards?: Education[]
-    expCards?: Experience[]
+    expCards?: ExperienceData[]
 }
 
 function Background() {
