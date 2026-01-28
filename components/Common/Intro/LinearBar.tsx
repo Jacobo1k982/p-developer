@@ -24,11 +24,22 @@ const LinearBar = ({ title, percent, className = '' }: LinearBarProps) => {
             </div>
 
             {/* Barra de progreso */}
-            <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div className="
+  h-2 w-full 
+  bg-gray-100 dark:bg-gray-800 
+  rounded-full 
+  overflow-hidden 
+  relative
+">
                 <div
-                    className={`h-full bg-gray-600 dark:bg-gray-500 rounded-full transition-all duration-500 ease-out`}
-                    style={{ width: undefined }}
-                    data-width={percent}
+                    className={`
+      absolute inset-0 
+      bg-blue-600 dark:bg-blue-500 
+      rounded-full 
+      transition-all duration-1000 ease-out
+      ${percent > 0 ? '' : 'animate-shimmer'}
+    `}
+                    style={{ width: percent > 0 ? `${percent}%` : '100%' }}
                 />
             </div>
         </div>

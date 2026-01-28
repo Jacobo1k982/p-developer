@@ -18,25 +18,47 @@ const Intro: React.FC<{
   return (
     <>
       {/* Header fijo - estilo GitHub */}
-      <div className="absolute top-2 inset-x-0 z-50 h-48 flex flex-col items-center justify-center bg-white dark:bg-[#0d1117] border-b border-gray-200 dark:border-[#30363d] px-4">
-        <Image
-          className="w-20 h-20 rounded-full border border-gray-300 dark:border-[#30363d]"
-          src={Jacobo}
-          alt="profile picture"
-        />
+      <div className="
+  absolute top-0 inset-x-0 z-50
+  h-60
+  flex flex-col items-center justify-center
+  bg-[#0d1117]
+  border-b border-[#30363d]
+  px-5
+">
+        <div className="flex flex-col items-center">
+          <Image
+            className="
+        w-24 h-24 rounded-full
+        border-4 border-[#161b22]
+        ring-1 ring-[#30363d]/70
+        object-cover
+        shadow-md
+      "
+            src={Jacobo}
+            alt={`${NAME} profile`}
+            width={96}
+            height={96}
+          />
 
-        <div className="mt-3 text-center">
-          <p className="text-base font-semibold text-gray-900 dark:text-[#c9d1d9]">
-            {NAME}
-          </p>
-          <p className="text-sm text-gray-500 dark:text-[#8b949e] mt-1">
-            {DESIGNATION}
-          </p>
+          <div className="mt-3 text-center">
+            <p className="
+        text-lg font-semibold
+        text-[#c9d1d9]
+      ">
+              {NAME}
+            </p>
+            <p className="
+        text-xs text-[#8b949e] mt-0.5
+      ">
+              {DESIGNATION}
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Contenido central - tarjetas tipo GitHub */}
-      <div className="z-20 pt-48 pb-12 px-4 space-y-6 overflow-y-auto no-scrollbar bg-gray-50 dark:bg-[#0d1117]">
+      <div className="z-20 pt-60 pb-12 px-4 space-y-6 overflow-y-auto no-scrollbar bg-gray-50 dark:bg-[#0d1117]">
         <div className="space-y-6 divide-y divide-gray-200 dark:divide-[#30363d]">
           <Location />
           <Languages />

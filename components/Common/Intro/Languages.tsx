@@ -8,37 +8,73 @@ const Languages = () => {
     const [english, setEnglish] = useState(0)
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            if (spanish < 98) {
-                setSpanish((prevCount) => prevCount + 1)
-            }
-            if (english < 40 ) {
-                setEnglish((prevCount) => prevCount + 1)
-            }
-        }, 30)
+        const targets = { spanish: 98, english: 40 }
+        const duration = 1800
+        let start: number | null = null
 
-        return () => clearInterval(timer)
-    }, [spanish, english])
+        const animate = (timestamp: number) => {
+            if (!start) start = timestamp
+            const progress = Math.min((timestamp - start) / duration, 1)
+
+            setSpanish(Math.floor(targets.spanish * progress))
+            setEnglish(Math.floor(targets.english * progress))
+
+            if (progress < 1) {
+                requestAnimationFrame(animate)
+            }
+        }
+
+        requestAnimationFrame(animate)
+    }, [])
 
     return (
-        <div className="flex flex-col space-y-1 pt-6">
-            <div className="flex flex-col gap-y-4">
-                <span className="text-gray-900 dark:text-gray-100 text-xs font-semibold uppercase tracking-wider">
-                    Idiomas
-                </span>
-                <div className="flex flex-row items-center justify-center space-x-6">
-                    <div className="flex flex-col items-center justify-center gap-y-2">
-                        <CircularProgress percent={spanish} size={75} />
-                        <span className="text-xs font-medium text-gray-900 dark:text-gray-100">
-                            Español
+        <div className="py-6">
+            <h3 className="
+        mb-5 text-xs font-semibold uppercase tracking-wider 
+        text-gray-500 dark:text-gray-400
+      ">
+                Idiomas
+            </h3>
+
+            <div className="flex items-center justify-center gap-12 sm:gap-20">
+                <div className="flex flex-col items-center group">
+                    <div className="relative transition-transform duration-300 group-hover:scale-105">
+                        <CircularProgress
+                            percent={spanish}
+                            size={100}
+                            strokeWidth={12}
+                            className="drop-shadow-sm"
+                        />
+                        <span className="
+              absolute inset-0 flex items-center justify-center 
+              text-2xl font-semibold text-gray-900 dark:text-gray-100
+            ">
+                            {spanish}%
                         </span>
                     </div>
-                    <div className="flex flex-col items-center justify-center gap-y-2">
-                        <CircularProgress percent={english} size={75} />
-                        <span className="text-xs font-medium text-gray-900 dark:text-gray-100">
-                            Inglés
+                    <span className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Español
+                    </span>
+                </div>
+
+                <div className="flex flex-col items-center group">
+                    <div className="relative transition-transform duration-300 group-hover:scale-105">
+                        <CircularProgress
+                            percent={english}
+                            size={100}
+                            strokeWidth={12}
+                            className="drop-shadow-sm"
+                        />
+                        <span className="
+              absolute inset-0 flex items-center justify-center 
+              text-2xl font-semibold text-gray-900 dark:text-gray-100
+            ">
+                            {english}%
                         </span>
                     </div>
+                    <span className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Inglés
+                    </span>
                 </div>
             </div>
         </div>

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { CONTACTS } from '@/constants/constants'
 import Link from 'next/link'
@@ -5,45 +7,35 @@ import { Mail, Phone } from 'lucide-react'
 
 const Contact = () => {
   return (
-    <div className="mt-8">
-      <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-6 py-5 shadow-sm">
-        {/* Email */}
-        <div className="flex items-start gap-3">
-          <div className="mt-1 text-gray-600 dark:text-gray-400">
-            <Mail size={18} />
+    <div className="mt-6 md:mt-8 space-y-4">
+      <div className="flex items-start gap-3">
+        <Mail size={16} className="text-[#8b949e] mt-1 flex-shrink-0" />
+        <div>
+          <div className="text-xs font-semibold uppercase tracking-wide text-[#8b949e]">
+            Email
           </div>
-
-          <div className="flex flex-col">
-            <span className="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-              Correo electrónico
-            </span>
-
-            <Link
-              href={`mailto:${CONTACTS.EMAIL}`}
-              className="mt-1 text-sm text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-            >
-              {CONTACTS.EMAIL}
-            </Link>
-          </div>
+          <Link
+            href={`mailto:${CONTACTS.EMAIL}`}
+            className="
+              text-sm text-[#c9d1d9] 
+              hover:text-[#58a6ff] dark:hover:text-[#79c0ff] 
+              transition-colors
+              font-medium
+            "
+          >
+            {CONTACTS.EMAIL}
+          </Link>
         </div>
+      </div>
 
-        {/* Divider */}
-        <div className="my-4 border-t border-gray-200 dark:border-gray-700" />
-
-        {/* Teléfono */}
-        <div className="flex items-start gap-3">
-          <div className="mt-1 text-gray-600 dark:text-gray-400">
-            <Phone size={18} />
+      <div className="flex items-start gap-3">
+        <Phone size={16} className="text-[#8b949e] mt-1 flex-shrink-0" />
+        <div>
+          <div className="text-xs font-semibold uppercase tracking-wide text-[#8b949e]">
+            Phone
           </div>
-
-          <div className="flex flex-col">
-            <span className="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-              Teléfono
-            </span>
-
-            <span className="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              {CONTACTS.PHONE}
-            </span>
+          <div className="text-sm text-[#c9d1d9] font-medium">
+            {CONTACTS.PHONE}
           </div>
         </div>
       </div>

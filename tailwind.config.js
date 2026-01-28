@@ -6,6 +6,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animations: {
+        shimemer: 'shimmer 2s infinite linear',
+      },
+      keyframes: {
+        shimmer: {
+          '0%': {transform: 'translateX(-100%)'},
+          '100%': {transform: 'translateX(100%)'},
+        },
+      },
       colors: {
         Green: "#1fdf64",
         Black: "#000",
