@@ -122,8 +122,8 @@ const Banner = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 + i * 0.15, duration: 0.7 }}
             >
-              <Card className="bg-[#161b22] border-[#30363d] hover:border-[#444c56] transition-colors duration-300 py-6 px-5 text-center shadow-sm">
-                <div className="text-2xl md:text-4xl font-bold text-white tracking-tight">
+              <Card className="bg-[#161b22] border-[#30363d] hover:border-[#444c56] transition-colors duration-300 py-5 px-0 text-center shadow-sm">
+                <div className="text-2xl md:text-2xl font-bold text-white tracking-tight">
                   {stat.value}
                 </div>
                 <div className="mt-3 text-sm uppercase tracking-wider text-[#8b949e] font-medium">

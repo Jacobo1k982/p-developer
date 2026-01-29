@@ -34,7 +34,7 @@ const Intro: React.FC<{
         object-cover
         shadow-md
       "
-            src="/images/hero.png"           // ← cambio clave
+            src="/hero2.png"           // ← cambio clave
             alt={`${NAME} profile`}
             width={96}
             height={96}
