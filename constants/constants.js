@@ -61,8 +61,8 @@ export const TECH_STACK = [
 
 export const CONTACTS = {
   EMAIL: 'askmecr@gmail.com',
-  PHONE: '(+506) 64541700',
-  WHATSAPP: '(+506) 87905876',
+  PHONE: '(+506) 87905876',
+  WHATSAPP: '(+506) 64541700',
 };
 export const SOCIAL_LINKS = {
   GITHUB: 'https://github.com/Jacobo1k982',

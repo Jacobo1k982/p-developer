@@ -87,7 +87,6 @@ const Banner = () => {
               <Button
                 size="lg"
                 variant="outline"
-                asChild={false}
                 className="rounded-full px-8 py-6 text-base font-medium border-[#30363d] text-[#c9d1d9] hover:bg-[#161b22] hover:text-white transition-all duration-300 group"
               >
                 <a
