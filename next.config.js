@@ -1,7 +1,10 @@
 module.exports = {
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-}
+  images: {
+    unoptimized: true,          // ← Esto desactiva el optimizador de Next.js
+    //    → Evita errores 400/502 en Netlify
+    //    → La imagen se sirve directamente desde /public
+  },
+};
