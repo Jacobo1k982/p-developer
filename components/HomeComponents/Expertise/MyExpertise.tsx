@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import ExpertiseCard from './ExpertiseCard'
-import ParagraphSkeleton from '../../Common/ParagraphSkeleton'
-import { cn } from '../../../lib/utils'
+import ParagraphSkeleton from '@/components/Common/ParagraphSkeleton'
+import { cn } from '@/lib/utils'
 
 // Define the Expertise type if not imported from elsewhere
 type Expertise = {
@@ -40,7 +40,7 @@ const itemVariants = {
 }
 
 const MyExpertise = () => {
-    const { isLoading, error, data } = useQuery({
+    const { isLoading, error, data } = useQuery ({
         queryKey: ['expertise'],
         queryFn: async () => {
             const { data } = await axios.get('/api/expertise')

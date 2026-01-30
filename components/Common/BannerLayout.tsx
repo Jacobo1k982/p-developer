@@ -35,7 +35,7 @@ const BannerLayout = ({
                             alt="Background abstract tech"
                             fill
                             priority
-                            quality={85}
+                            quality={75}
                             sizes="100vw"
                             className="object-cover object-center brightness-[0.35] contrast-[0.9] saturate-[0.7]"
                             placeholder="blur"   // Ahora sí es válido

@@ -16,7 +16,7 @@
     "moduleResolution": "node", // Mejor para Next.js + App Router
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
@@ -36,7 +36,15 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts" // Tipos automáticos de rutas de Next.js
-, "components/Common/CardLayout.tsx", "components/Common/Intro/index.tsx", "pages/layout.tsx", "pages/layout.tsx"  ],
+    ,
+    "components/Common/CardLayout.tsx",
+    "components/Common/Intro/index.tsx",
+    "components/Common/layout.tsx",
+    "components/Common/layout.tsx",
+    "pages/api/background.js",
+    "app/api/background/route.ts",
+    ".next/dev/types/**/*.ts"
+, "pages/_app.js"  ],
   "exclude": [
     "node_modules"
   ]

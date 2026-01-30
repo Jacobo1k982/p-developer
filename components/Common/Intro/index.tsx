@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FaDownload, FaGithub, FaLinkedin } from 'react-icons/fa';
 import Contact from '@/components/Common/Intro/Contact';
-import Download from '@/components/Common/Intro/Download';
+import Download from '@/components/Download';
 import Languages from '@/components/Common/Intro/Languages';
 import Location from '@/components/Common/Intro/Location';
 import Tools from '@/components/Common/Intro/Tools';
