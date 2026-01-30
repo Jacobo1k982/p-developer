@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
 
 interface EduCardProps {
     card?: {
@@ -14,10 +13,9 @@ interface EduCardProps {
 }
 
 const EducationCard = ({ card }: EduCardProps) => {
-    // Si card es undefined o null → render fallback
     if (!card) {
         return (
-            <div className="bg-[#161b22] border border-red-600/30 rounded-xl p-6 text-red-400">
+            <div className="bg-[#161b22] border border-red-600/30 rounded-xl p-6 text-red-400 text-center font-medium">
                 Tarjeta de educación no disponible
             </div>
         );
@@ -26,25 +24,50 @@ const EducationCard = ({ card }: EduCardProps) => {
     return (
         <div
             className="
-        bg-[#161b22] border border-[#30363d] rounded-xl p-6
-        hover:border-[#444c56] transition-all duration-200
-        shadow-sm hover:shadow-md
+        group relative overflow-hidden rounded-xl
+        bg-[#161b22] border border-[#30363d]
+        shadow-sm hover:shadow-lg hover:border-[#58a6ff]/40
+        transition-all duration-300 ease-out
+        p-6 md:p-7
       "
         >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
+            {/* Encabezado */}
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                 <div>
-                    <h3 className="text-lg font-semibold text-[#c9d1d9]">
+                    <h3 className="
+            text-xl font-semibold text-[#c9d1d9]
+            group-hover:text-[#c9d1d9]/90 transition-colors
+          ">
                         {card.institution || 'Institución desconocida'}
                     </h3>
-                    <p className="text-sm text-[#58a6ff]">{card.degree || 'Grado no especificado'}</p>
+                    <p className="text-base text-[#58a6ff] mt-1 font-medium">
+                        {card.degree || 'Grado no especificado'}
+                    </p>
                 </div>
-                <span className="text-sm text-[#8b949e] font-mono">
+
+                {/* Período */}
+                <span className="
+          text-sm font-mono text-[#8b949e] bg-[#0d1117]/70
+          px-4 py-1.5 rounded-full self-start sm:self-center
+          whitespace-nowrap
+        ">
                     {card.period || 'Período no disponible'}
                 </span>
             </div>
-            <p className="text-sm text-[#8b949e] leading-relaxed">
+
+            {/* Descripción */}
+            <p className="
+        text-sm text-[#8b949e] leading-relaxed
+        line-clamp-4 md:line-clamp-none
+      ">
                 {card.description || 'Sin descripción disponible'}
             </p>
+
+            {/* Gradiente hover sutil azul */}
+            <div className="
+        absolute inset-0 bg-gradient-to-t from-[#58a6ff]/5 via-transparent to-transparent
+        opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none
+      " />
         </div>
     );
 };

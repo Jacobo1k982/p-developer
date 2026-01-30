@@ -32,7 +32,7 @@ const TrajectorySection = () => {
     const { isLoading, error, data } = useQuery<BackgroundData>({
         queryKey: ['background'],
         queryFn: async () => {
-            const { data } = await axios.get('/api/background');
+            const { data } = await axios.get('/background');
             return data;
         },
     });

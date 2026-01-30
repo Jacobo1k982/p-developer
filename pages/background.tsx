@@ -105,8 +105,11 @@ function Background() {
                             ) : (
                                 <div className="space-y-4">
                                     {data.education.map((eduData) => (
-                                        <div key={eduData.id} className="transform transition-all duration-300 hover:-translate-y-1">
-                                            <Edu_Card {...eduData} />
+                                        <div
+                                            key={eduData.id}
+                                            className="transform transition-all duration-300 hover:-translate-y-1"
+                                        >
+                                            <Edu_Card card={eduData} />
                                         </div>
                                     ))}
                                 </div>
@@ -140,9 +143,12 @@ function Background() {
                                 </div>
                             ) : (
                                 <div className="space-y-4">
-                                    {data.experience.map((expData) => (
-                                        <div key={expData.id} className="transform transition-all duration-300 hover:-translate-y-1">
-                                            <Exp_Card {...expData} />
+                                    {data.experience.map((expData, index) => (
+                                        <div
+                                            key={expData?.id || `exp-${index}`}
+                                            className="transform transition-all duration-300 hover:-translate-y-1"
+                                        >
+                                            <Exp_Card card={expData} />
                                         </div>
                                     ))}
                                 </div>
