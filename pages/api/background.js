@@ -4,53 +4,65 @@ const backgroundData = {
     education: [
         {
             id: "edu-0",
-            institution: "UET Peshawar",
-            degree: "BS, Computer System Engineering",
-            description: "Bachelor's Degree in Computer System Engineering from UET Peshawar.",
-            period: "2018-2022"
+            institution: "CSS: Flexbox y layouts responsivos",
+            degree: "Formaciones con este curso",
+            description: "CSS: Profundiza en los estilos",
+            period: "11/04/2024"
         },
         {
             id: "edu-1",
-            institution: "Peshawar Model Degree College",
-            degree: "HSSC, Pre Engineering",
-            description: "Completed FSC part 1 and part 2 in Pre-Engineering from Peshawar Model Degree College.",
-            period: "2015-2017"
+            institution: "ChatGPT y JavaScript",
+            degree: "Construyendo el juego Pong",
+            description: "Jornada de IA para desarrolladores",
+            period: "04/09/2024"
         },
         {
             id: "edu-2",
-            institution: "Falcon Academy",
-            degree: "SSC, Science Subjects",
-            description: "Completed SSC part 1 and part 2 in Science subjects from Falcon Academy Seni Gumbat Kohat",
-            period: "2013-2015"
+            institution: "Hooks en ReactJS",
+            degree: "Conociendo su potencial y utilidad",
+            description: "Nivelación TypeSript y React - Alura Boost, Explora React con JavaScript, Explora React con JavaScript TypeSript - Bootcamp",
+            period: "25/11/2024"
+        },
+        {
+            id: "edu-3",
+            institution: "HTML y CSS",
+            degree: "ambientes de desarrollo, estructura de archivos y tags",
+            description: "HTML y CSS: para proyectos web, nivelación Bootcamp React con Typescript, Programación G9 - ONE, Angular: creando aplicaciones web dinámicas",
+            period: "25/11/2024"
+        },
+        {
+            id: "edu-4",
+            institution: "Javascript",
+            degree: "consumiendo y manejando datos de una API",
+            description: "Nivelación TypeSript y React - Alura Boost",
+            period: "19/08/2025"
+        },
+        {
+            id: "edu-5",
+            institution: "React",
+            degree: "Desarrollando con JavaScript",
+            description: "Implementar Componentes Reactivos, Investigar y analizar mensajes de erro, Prototipo de una aplicación web con React - Bootcamp",
+            period: "20/08/2025"
         },
     ],
     experience: [
         {
             id: "exp-1",
-            company: "JMM Technologies",
+            company: "Bordados ALCA",
             role: "Frontend Developer",
-            url: "https://jmm.ltd/",
-            description: "As a frontend developer, I use React, Next & JavaScript to build user interfaces for web applications.",
-            period: "02/2023 - Present",
-            location: "Peshawar, Pakistan"
+            url: "https://bordadosalca.com/",
+            description: "Como desarrollador frontend, uso React, Next.js, Tailwind CSS y JavaScript para crear interfaces de usuario para aplicaciones web.",
+            period: "06/2025 - Present",
+            location: "Pavas, Costa Rica"
         },
         {
             id: "exp-2",
-            company: "HauzaTech",
-            role: "Internee",
-            url: null,  // o "" si prefieres string vacío
-            description: "As an Internee, I learned how to use React & JavaScript to build interactive websites.",
-            period: "02/2023 - Present",
-            location: "Peshawar, Pakistan"
-        },
-        {
-            id: "exp-3",
-            company: "Encoder Bytes",
-            role: "PHP Developer",
-            url: "https://www.encoderbytes.com/",
-            description: "I work there as a PHP developer, there I learned how to do CRUD'S operations in PHP, also I worked on Firebase",
-            period: "09/2020 - 02/2021",
-            location: "Peshawar, Pakistan"
+            company: "Business Process Outsourcing MiConta",
+            role: "Frontend Developer",
+            url: "https://bpomiconta.netlify.app/",
+            description: "Como desarrollador frontend, uso React, Next.js Tailwind CSS y JavaScript para crear interfaces de usuario para aplicaciones web.",
+            period: "02/2025 - Present",
+            location: "San José, Costa Rica"
         },
     ]
 };
