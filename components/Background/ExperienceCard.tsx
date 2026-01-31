@@ -62,7 +62,7 @@ const ExperienceCard = ({ card }: ExpCardProps) => {
 
                         {hasValidUrl && (
                             <a
-                                href={card.url}
+                                href={card.url ?? undefined}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`Visitar sitio web de ${card.company || 'la empresa'}`}
