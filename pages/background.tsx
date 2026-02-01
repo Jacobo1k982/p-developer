@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import Edu_Card from '@/components/Background/EducationCard'
-import Exp_Card from '@/components/Background/ExperienceCard'
-import Footer from '@/components/Footer'
-import ParagraphSkeleton from '@/components/Common/ParagraphSkeleton'
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Edu_Card from '@/components/Background/EducationCard';
+import Exp_Card from '@/components/Background/ExperienceCard';
+import Footer from '@/components/Footer';
+import ParagraphSkeleton from '@/components/Common/ParagraphSkeleton';
+import { Variants } from "framer-motion";
 
 interface Education {
     id: string
@@ -41,7 +42,7 @@ const containerVariants = {
     },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
         opacity: 1,
