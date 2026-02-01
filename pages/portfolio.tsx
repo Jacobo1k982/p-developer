@@ -40,7 +40,9 @@ const Portfolio = () => {
 
     // Breadcrumbs dinámicos simples
     const getBreadcrumbs = () => {
-        const segments = pathname.split('/').filter(Boolean); // quita el primer "" vacío
+        const safePathname = pathname ?? '';
+        null
+        const segments = safePathname.split('/');
         let accumulatedPath = '';
 
         return segments.map((segment, index) => {
