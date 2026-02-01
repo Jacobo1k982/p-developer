@@ -10,7 +10,7 @@ const Location = () => {
     <div className="pt-5 pb-2">
       <h3 className="
         mb-3 text-xs font-semibold uppercase tracking-wider 
-        text-gray-500 dark:text-gray-400
+        text-[#8b949e]
       ">
         Detalles
       </h3>
@@ -19,13 +19,13 @@ const Location = () => {
         {entries.map(([key, value]) => (
           <React.Fragment key={key}>
             <dt className="
-              font-medium text-gray-700 dark:text-gray-300 
+              font-medium text-[#c9d1d9] 
               capitalize whitespace-nowrap
             ">
               {key}
             </dt>
             <dd className="
-              text-gray-600 dark:text-gray-400 
+              text-[#8b949e] 
               text-right sm:text-left
             ">
               {value}

@@ -6,7 +6,7 @@ interface CardLayoutProps {
     children: React.ReactNode
     className?: string
     hoverEffect?: boolean
-    variant?: 'default' | 'education' | 'experience'  // opcional para diferenciar estilos
+    variant?: 'default' | 'education' | 'experience'
 }
 
 const CardLayout = ({
@@ -15,7 +15,6 @@ const CardLayout = ({
     hoverEffect = true,
     variant = 'default',
 }: CardLayoutProps) => {
-    // Estilos base según variante
     const variantStyles = {
         default: 'border-[#30363d] hover:border-[#444c56]',
         education: 'border-[#30363d] hover:border-[#58a6ff]/50',
@@ -33,25 +32,24 @@ const CardLayout = ({
             className={`
         group relative overflow-hidden rounded-xl
         bg-[#161b22] border ${variantStyles[variant]}
-        shadow-sm ${hoverEffect ? variantHoverShadow[variant] : ''}
+        shadow-none ${hoverEffect ? variantHoverShadow[variant] : ''}
         transition-all duration-300 ease-out
         ${hoverEffect ? 'hover:scale-[1.02] hover:-translate-y-0.5' : ''}
+        focus-visible:ring-2 focus-visible:ring-[#58a6ff]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]
         ${className}
       `}
         >
-            {/* Fondo gradiente sutil en hover */}
+            {/* Gradiente hover sutil (opcional - puedes quitarlo si prefieres más limpio) */}
             {hoverEffect && (
                 <div
                     className={`
             absolute inset-0 bg-gradient-to-t from-transparent via-transparent
-            ${variant === 'education' ? 'to-[#58a6ff]/5' : ''}
-            ${variant === 'experience' ? 'to-[#3fb950]/5' : ''}
-            opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none
+            to-[#58a6ff]/5
+            opacity-0 group-hover:opacity-10 transition-opacity duration-400 pointer-events-none
           `}
                 />
             )}
 
-            {/* Contenido */}
             <div className="relative z-10">{children}</div>
         </div>
     )

@@ -11,8 +11,8 @@ module.exports = {
       },
       keyframes: {
         shimmer: {
-          '0%': {transform: 'translateX(-100%)'},
-          '100%': {transform: 'translateX(100%)'},
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
       colors: {
@@ -26,6 +26,12 @@ module.exports = {
         LightGray: "#959595",
         SilverGray: "#B3B3B3",
         Snow: "#ffffff",
+        background: '#0d1117',
+        surface: '#161b22',
+        border: '#30363d',
+        textPrimary: '#c9d1d9',
+        textSecondary: '#8b949e',
+        accent: '#58a6ff',
       },
       fontFamily: {
         'cascadia-normal': ['cascadia-normal'],

@@ -25,7 +25,7 @@ const Certificates = () => {
                 setIsLoading(true)
                 setError(null)
 
-                const response = await fetch('/api/certificates', {  // ← ¡Aquí está la corrección!
+                const response = await fetch('/api/certificates', {
                     method: 'GET',
                     cache: 'no-store',
                 })
@@ -59,7 +59,7 @@ const Certificates = () => {
 
     return (
         <>
-            <div className="px-4 md:px-8 py-5 text-xl font-semibold text-gray-900 dark:text-gray-100">
+            <div className="px-4 md:px-8 py-5 text-xl font-semibold text-[#c9d1d9]">
                 Certificados
             </div>
 
@@ -67,22 +67,32 @@ const Certificates = () => {
                 {isLoading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[1, 2, 3].map(i => (
-                            <ParagraphSkeleton key={i} className="h-64 rounded-xl" />
+                            <ParagraphSkeleton
+                                key={i}
+                                className="h-64 rounded-xl bg-[#161b22]/70 border border-[#30363d]/50"
+                            />
                         ))}
                     </div>
                 ) : error ? (
-                    <div className="py-12 text-center text-red-600 dark:text-red-400">
+                    <div className="py-12 text-center text-red-400">
                         {error}
                     </div>
                 ) : data.length === 0 ? (
-                    <div className="py-12 text-center text-gray-500 dark:text-gray-400">
+                    <div className="py-12 text-center text-[#8b949e]">
                         Aún no hay certificados para mostrar
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {data.map(cert => (
-                            <CertificateCard key={cert.id} data={cert} />
-                        ))}
+                    <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-[#58a6ff] scrollbar-track-[#161b22]">
+                        <div className="flex flex-row flex-nowrap gap-6 min-w-max">
+                            {data.map(cert => (
+                                <div
+                                    key={cert.id}
+                                    className="flex-shrink-0 w-80 sm:w-96"
+                                >
+                                    <CertificateCard data={cert} />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>

@@ -8,7 +8,7 @@ const Skills = () => {
   return (
     <div className='flex flex-col space-y-1 pt-6'>
       <div className='flex flex-col gap-y-4'>
-        <span className='text-gray-900 dark:text-gray-100 text-xs font-semibold uppercase tracking-wider'>
+        <span className='text-[#c9d1d9] text-xs font-semibold uppercase tracking-wider'>
           Experiencia y competencias
         </span>
         <div className='flex flex-col space-y-4'>

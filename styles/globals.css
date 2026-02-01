@@ -187,7 +187,7 @@ body {
 }
 
 .animate-pulse-slow {
-  animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 @keyframes slow-pulse {
   0%, 100% { opacity: 0.25; }
@@ -206,6 +206,96 @@ body {
 .animate-rotate-slow   { animation: rotate-slow 40s linear infinite; }
 .animate-rotate-slow-reverse { animation: rotate-slow-reverse 55s linear infinite; }
 
-.animate-pulse-slow {
-  animation: pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+/* ============================
+   EMBLA CAROUSEL - Required & Fixed
+============================ */
+
+/* Outer wrapper (optional, pero útil para estilos) */
+.embla {
+  /* Puedes agregar padding o max-width si lo necesitas */
+}
+
+/* Viewport: OBLIGATORIO overflow hidden + ref aquí */
+.embla__viewport {
+  overflow: hidden;
+}
+
+/* Container: fuerza flex horizontal */
+.embla__container {
+  display: flex;
+  flex-wrap: nowrap !important;
+  touch-action: pan-y pinch-zoom;
+}
+
+/* Slides: no se achican, base para tamaños */
+.embla__slide {
+  flex: 0 0 auto;
+  flex-shrink: 0 !important;
+  min-width: 0;
+  min-height: 100%;             /* mantiene altura uniforme */
+  scroll-snap-align: start;
+}
+
+/* Peek effect elegante en móvil (opcional) */
+@media (max-width: 640px) {
+  .embla__slide {
+    opacity: 0.75;
+    transition: opacity 0.4s ease;
+  }
+  .embla__slide.is-selected {
+    opacity: 1;
+  }
+}
+/* Fuerza extrema para Embla - pon al FINAL del archivo */
+.embla__viewport {
+  overflow: hidden !important;
+  width: 100% !important;
+}
+
+.embla__container {
+  display: flex !important;
+  flex-direction: row !important;     /* fuerza horizontal */
+  flex-wrap: nowrap !important;
+  width: max-content !important;      /* permite que crezca horizontalmente */
+  touch-action: pan-y pinch-zoom !important;
+}
+
+.embla__slide {
+  flex: 0 0 auto !important;
+  flex-shrink: 0 !important;
+  width: 85% !important;              /* fallback para móvil */
+  min-width: 0 !important;
+}
+
+/* Mobile peek (opcional) */
+@media (max-width: 640px) {
+  .embla__slide {
+    width: 85% !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .embla__slide {
+    width: 48% !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .embla__slide {
+    width: 33% !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .embla__slide {
+    width: 25% !important;
+  }
+}
+@layer base {
+  html {
+    @apply bg-[#0d1117] text-[#c9d1d9];
+  }
+  body {
+    @apply bg-[#0d1117] text-[#c9d1d9];
+  }
 }

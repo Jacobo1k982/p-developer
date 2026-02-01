@@ -10,26 +10,23 @@ interface CircularProgressProps {
     trackColor?: string     // color del círculo de fondo
     textColor?: string      // color del texto %
     className?: string
-    animateFromZero?: boolean // opcional: anima desde 0 al montar (si ya lo haces en el padre, pon false)
+    animateFromZero?: boolean
 }
 
 const CircularProgress = ({
     percent,
     size = 90,
     strokeWidth = 10,
-    color = 'currentColor',               // por defecto hereda de tailwind text-blue-600 / etc.
-    trackColor = 'stroke-gray-200 dark:stroke-gray-700/60',
-    textColor = 'text-gray-900 dark:text-gray-100',
+    color = 'currentColor',               // hereda de tailwind (ej: text-[#58a6ff])
+    trackColor = 'stroke-[#30363d]',      // ← dark fijo: gris oscuro GitHub
+    textColor = 'text-[#c9d1d9]',         // ← dark fijo: texto claro principal
     className = '',
     animateFromZero = false,
 }: CircularProgressProps) => {
     const radius = (size - strokeWidth) / 2
     const circumference = 2 * Math.PI * radius
 
-    // Offset final
     const offset = circumference - (percent / 100) * circumference
-
-    // Para animación desde 0 (opcional)
     const initialOffset = animateFromZero ? circumference : offset
 
     return (
@@ -57,7 +54,7 @@ const CircularProgress = ({
                     strokeWidth={strokeWidth}
                 />
 
-                {/* Círculo de progreso con gradiente sutil y animación */}
+                {/* Círculo de progreso */}
                 <circle
                     cx={size / 2}
                     cy={size / 2}
@@ -79,7 +76,7 @@ const CircularProgress = ({
                 />
             </svg>
 
-            {/* Texto del porcentaje - más elegante */}
+            {/* Texto del porcentaje */}
             <div
                 className={`
           absolute inset-0 flex items-center justify-center 

@@ -23,7 +23,7 @@ const Tools = () => {
 
   return (
     <div className="pt-6">
-      <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+      <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#8b949e]">
         Tecnologías
       </h3>
 
@@ -53,7 +53,7 @@ const Tools = () => {
       </div>
 
       {technologies.length === 0 && (
-        <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+        <p className="mt-4 text-center text-sm text-[#8b949e]">
           Sin tecnologías agregadas aún
         </p>
       )}

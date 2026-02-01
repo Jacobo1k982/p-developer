@@ -11,8 +11,8 @@ const ImageAndParagraphSkeleton = ({ className = '' }: ImageAndParagraphSkeleton
         <div
             role="status"
             className={`
-        rounded-lg border border-gray-200 dark:border-gray-700
-        bg-white dark:bg-gray-800
+        rounded-lg border border-[#30363d]
+        bg-[#161b22]
         p-4 md:p-6 shadow-sm
         animate-pulse
         max-w-2xl
@@ -20,9 +20,9 @@ const ImageAndParagraphSkeleton = ({ className = '' }: ImageAndParagraphSkeleton
       `}
         >
             {/* Image placeholder */}
-            <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-100 dark:bg-gray-700">
+            <div className="flex items-center justify-center h-48 mb-4 rounded bg-[#21262d]">
                 <svg
-                    className="w-12 h-12 text-gray-300 dark:text-gray-600"
+                    className="w-12 h-12 text-[#444c56]"
                     xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true"
                     fill="currentColor"
@@ -33,16 +33,16 @@ const ImageAndParagraphSkeleton = ({ className = '' }: ImageAndParagraphSkeleton
             </div>
 
             {/* Title skeleton */}
-            <div className="h-3 rounded bg-gray-200 dark:bg-gray-700 w-48 mb-4"></div>
+            <div className="h-3 rounded bg-[#30363d] w-48 mb-4"></div>
 
             {/* Paragraph skeletons */}
-            <div className="h-2.5 rounded bg-gray-200 dark:bg-gray-700 mb-2.5"></div>
-            <div className="h-2.5 rounded bg-gray-200 dark:bg-gray-700 mb-2.5"></div>
-            <div className="h-2.5 rounded bg-gray-200 dark:bg-gray-700 w-4/5 mb-2.5"></div>
-            <div className="h-2.5 rounded bg-gray-200 dark:bg-gray-700 w-3/5"></div>
+            <div className="h-2.5 rounded bg-[#30363d] mb-2.5"></div>
+            <div className="h-2.5 rounded bg-[#30363d] mb-2.5"></div>
+            <div className="h-2.5 rounded bg-[#30363d] w-4/5 mb-2.5"></div>
+            <div className="h-2.5 rounded bg-[#30363d] w-3/5"></div>
 
             {/* Screen reader text */}
-            <span className="sr-only">Loading...</span>
+            <span className="sr-only">Cargando...</span>
         </div>
     )
 }

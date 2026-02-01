@@ -10,7 +10,7 @@ interface DownloadProps {
 const Download = ({ icon }: DownloadProps) => {
     return (
         <div className="flex flex-col gap-y-4 pt-6">
-            <span className="text-gray-900 dark:text-gray-100 text-xs font-semibold uppercase tracking-wider">
+            <span className="text-[#c9d1d9] text-xs font-semibold uppercase tracking-wider">
                 Descargar CV
             </span>
             <a
@@ -19,16 +19,16 @@ const Download = ({ icon }: DownloadProps) => {
                 className="
           inline-flex items-center justify-center gap-2
           w-full px-4 py-3
-          bg-gray-900 dark:bg-gray-700
-          text-white dark:text-gray-100
+          bg-[#161b22]
+          text-[#c9d1d9]
           rounded-lg
           font-medium text-sm
-          hover:bg-gray-800 dark:hover:bg-gray-600
+          hover:bg-[#21262d]
           transition-colors duration-200
-          focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2
+          focus:outline-none focus:ring-2 focus:ring-[#58a6ff]/40 focus:ring-offset-2 focus:ring-offset-[#0d1117]
         "
             >
-                {icon || <DownloadIcon size={16} className="text-gray-200 dark:text-gray-300" />}
+                {icon || <DownloadIcon size={16} className="text-[#8b949e]" />}
                 <span>Descargar CV</span>
             </a>
         </div>

@@ -7,12 +7,24 @@ import ExpertiseCard from './ExpertiseCard'
 import ParagraphSkeleton from '@/components/Common/ParagraphSkeleton'
 import { cn } from '@/lib/utils'
 
+// Importa TODOS los íconos que usas en iconMap
+import {
+    Globe,
+    Server,
+    Code,
+    Database,
+    Zap,
+    Terminal,
+    Layers,
+    Cpu,
+} from 'lucide-react'
+
 // Define the Expertise type if not imported from elsewhere
 type Expertise = {
     id: string | number
     title: string
     desc: string
-    // icon?: string
+    // Puedes agregar tags?: string[] si lo usas
 }
 
 const containerVariants = {
@@ -40,7 +52,7 @@ const itemVariants = {
 }
 
 const MyExpertise = () => {
-    const { isLoading, error, data } = useQuery ({
+    const { isLoading, error, data } = useQuery<Expertise[]>({
         queryKey: ['expertise'],
         queryFn: async () => {
             const { data } = await axios.get('/api/expertise')
@@ -86,7 +98,7 @@ const MyExpertise = () => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: '-80px' }}
-                    className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6 md:gap-8"
+                    className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                 >
                     {isLoading
                         ? Array.from({ length: 6 }).map((_, i: number) => (
@@ -101,7 +113,7 @@ const MyExpertise = () => {
                         ))}
                 </motion.div>
 
-                {/* Opcional: footer sutil con call-to-action o nota */}
+                {/* Opcional: footer sutil */}
                 {!isLoading && data?.length === 0 && (
                     <div className="mt-12 text-center text-[#8b949e]">
                         Aún no hay datos de experiencia disponibles.

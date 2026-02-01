@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Mail, Github, Linkedin, Send, User, MessageSquare } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -28,7 +28,6 @@ const Contact = () => {
         message: string
     }>({ type: null, message: '' })
 
-    // ¡Cambia este ID por el tuyo real!
     const FORMSPREE_FORM_ID = 'maqjypkp'
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,7 +37,6 @@ const Contact = () => {
             [name]: value
         }))
 
-        // Limpiamos el mensaje de estado cuando el usuario empieza a escribir de nuevo
         if (status.type) setStatus({ type: null, message: '' })
     }
 
@@ -99,23 +97,23 @@ const Contact = () => {
     ]
 
     return (
-        <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950">
+        <div className="min-h-screen flex flex-col bg-[#0d1117]">
             <main className="flex-1 px-4 py-8 max-w-4xl mx-auto w-full">
                 {/* Información de contacto */}
                 <div className="mb-12">
-                    <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+                    <h1 className="text-2xl font-semibold text-[#c9d1d9] mb-6">
                         Información de contacto
                     </h1>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        <Card className="p-6">
+                        <Card className="p-6 bg-[#161b22] border-[#30363d]">
                             <div className="space-y-4">
                                 {contactInfo.map((item, index) => (
                                     <div key={index} className="flex justify-between items-center">
-                                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                                        <span className="text-sm font-medium text-[#8b949e]">
                                             {item.label}
                                         </span>
-                                        <span className="text-sm text-gray-900 dark:text-gray-100">
+                                        <span className="text-sm text-[#c9d1d9]">
                                             {item.value}
                                         </span>
                                     </div>
@@ -123,14 +121,14 @@ const Contact = () => {
                             </div>
                         </Card>
 
-                        <Card className="p-6">
+                        <Card className="p-6 bg-[#161b22] border-[#30363d]">
                             <div className="space-y-4">
                                 {contactDetails.map((item, index) => (
                                     <div key={index} className="flex justify-between items-center">
-                                        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                                        <span className="text-sm font-medium text-[#8b949e]">
                                             {item.label}
                                         </span>
-                                        <span className="text-sm text-gray-900 dark:text-gray-100">
+                                        <span className="text-sm text-[#c9d1d9]">
                                             {item.value}
                                         </span>
                                     </div>
@@ -150,7 +148,7 @@ const Contact = () => {
                                 href={social.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 hover:scale-125"
+                                className="text-[#8b949e] hover:text-[#c9d1d9] transition-all duration-200 hover:scale-125"
                             >
                                 <Icon size={28} />
                             </a>
@@ -160,18 +158,18 @@ const Contact = () => {
 
                 {/* Formulario */}
                 <div className="mb-12">
-                    <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+                    <h1 className="text-2xl font-semibold text-[#c9d1d9] mb-6">
                         Contáctanos
                     </h1>
 
-                    <Card className="p-6">
+                    <Card className="p-6 bg-[#161b22] border-[#30363d]">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="space-y-2">
-                                <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <label htmlFor="name" className="text-sm font-medium text-[#8b949e]">
                                     Nombre
                                 </label>
                                 <div className="relative">
-                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8b949e] h-4 w-4" />
                                     <Input
                                         id="name"
                                         name="name"
@@ -179,17 +177,17 @@ const Contact = () => {
                                         onChange={handleInputChange}
                                         required
                                         placeholder="Tu nombre"
-                                        className="pl-10"
+                                        className="pl-10 bg-[#0d1117] border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <label htmlFor="email" className="text-sm font-medium text-[#8b949e]">
                                     Email
                                 </label>
                                 <div className="relative">
-                                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+                                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8b949e] h-4 w-4" />
                                     <Input
                                         id="email"
                                         name="email"
@@ -198,17 +196,17 @@ const Contact = () => {
                                         onChange={handleInputChange}
                                         required
                                         placeholder="tu@email.com"
-                                        className="pl-10"
+                                        className="pl-10 bg-[#0d1117] border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <label htmlFor="message" className="text-sm font-medium text-[#8b949e]">
                                     Mensaje
                                 </label>
                                 <div className="relative">
-                                    <MessageSquare className="absolute left-3 top-3 text-gray-400 h-4 w-4" />
+                                    <MessageSquare className="absolute left-3 top-3 text-[#8b949e] h-4 w-4" />
                                     <Textarea
                                         id="message"
                                         name="message"
@@ -217,14 +215,14 @@ const Contact = () => {
                                         required
                                         rows={6}
                                         placeholder="Escribe tu mensaje aquí..."
-                                        className="pl-10 resize-none"
+                                        className="pl-10 resize-none bg-[#0d1117] border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
                                     />
                                 </div>
                             </div>
 
-                            {/* Mensaje de error (opcional) */}
+                            {/* Mensaje de error */}
                             {status.type === 'error' && (
-                                <div className="text-red-600 dark:text-red-400 text-sm text-center py-2">
+                                <div className="text-red-400 text-sm text-center py-2">
                                     {status.message}
                                 </div>
                             )}
@@ -232,7 +230,7 @@ const Contact = () => {
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full sm:w-auto"
+                                className="w-full sm:w-auto bg-[#58a6ff] hover:bg-[#79c0ff] text-white"
                             >
                                 <Send className="mr-2 h-4 w-4" />
                                 {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
@@ -244,23 +242,24 @@ const Contact = () => {
 
             {/* Modal de éxito */}
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                <DialogContent>
+                <DialogContent className="bg-[#161b22] border-[#30363d] text-[#c9d1d9]">
                     <div className="flex flex-col items-center justify-center py-6">
-                        <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4">
-                            <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-16 h-16 rounded-full bg-[#1a2e22] flex items-center justify-center mb-4">
+                            <svg className="w-8 h-8 text-[#86efac]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
                         <DialogTitle className="text-xl font-semibold mb-2">
                             ¡Mensaje Enviado!
                         </DialogTitle>
-                        <DialogDescription className="text-center mb-6">
+                        <DialogDescription className="text-center mb-6 text-[#8b949e]">
                             Gracias por contactarme.<br />
                             Te responderé lo antes posible.
                         </DialogDescription>
                         <Button
                             onClick={() => setIsOpen(false)}
                             variant="outline"
+                            className="border-[#58a6ff] text-[#58a6ff] hover:bg-[#58a6ff]/10"
                         >
                             Cerrar
                         </Button>
