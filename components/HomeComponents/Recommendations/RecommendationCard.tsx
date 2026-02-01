@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 import CardLayout from '@/components/Common/CardLayout'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 
-interface RecommendationData {
+type RecommendationData = {
     name: string
-    designation: string
+    designation?: string
     view: string
     image: string
     facebookURL: string
@@ -78,9 +78,7 @@ const RecommendationCard = ({ data }: RecommendationCardProps) => {
                 </div>
 
                 {/* Cargo */}
-                <div className="mt-1 text-sm text-gray-400 italic">
-                    {data.designation}
-                </div>
+                <div className="designation">{data.designation ?? '—'}</div>
 
                 {/* Texto de recomendación */}
                 <div className="mt-5 text-gray-300 text-sm leading-relaxed font-light flex-grow">

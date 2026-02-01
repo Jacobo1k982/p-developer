@@ -25,7 +25,7 @@ const Recommendations = () => {
 
     return (
         <>
-            <div className="px-2 md:px-8 py-4 text-lg font-bold text-[#c9d1d9] antialiased">
+            <div className="px-4 md:px-8 py-4 text-lg font-bold text-[#c9d1d9] antialiased">
                 Recomendaciones
             </div>
 
@@ -38,8 +38,11 @@ const Recommendations = () => {
                         />
                     ))
                 ) : (
-                    data?.map((item: Recommendation, key: number) => (
-                        <RecommendationCard key={key} data={item} />
+                    data?.map((item: Recommendation, key) => (
+                        <RecommendationCard
+                            key={key}
+                            data={{ ...item, designation: item.designation ?? '' }}
+                        />
                     ))
                 )}
             </div>
