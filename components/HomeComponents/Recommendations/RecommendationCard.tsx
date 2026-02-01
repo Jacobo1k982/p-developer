@@ -4,12 +4,12 @@ import React, { useState } from 'react'
 import CardLayout from '@/components/Common/CardLayout'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 
-type RecommendationData = {
+interface  RecommendationData {
     name: string
     designation?: string
     view: string           // ← ya no necesita ser opcional gracias al ?? '' de arriba
     image?: string
-    facebookURL: string
+    facebookURL?: string
 }
 
 interface RecommendationCardProps {

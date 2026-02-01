@@ -45,7 +45,8 @@ const Recommendations = () => {
                                 ...item,
                                 designation: item.designation ?? '',
                                 view: item.view ?? '',
-                                image: item.image ?? '', // ensure image is a string
+                                image: item.image ?? '',
+                                facebookURL: item.facebookURL ?? '', // <-- add this line or similar
                             }}
                         />
                     ))
