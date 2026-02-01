@@ -8,7 +8,7 @@ type RecommendationData = {
     name: string
     designation?: string
     view: string           // ← ya no necesita ser opcional gracias al ?? '' de arriba
-    image: string
+    image?: string
     facebookURL: string
 }
 

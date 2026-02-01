@@ -44,7 +44,8 @@ const Recommendations = () => {
                             data={{
                                 ...item,
                                 designation: item.designation ?? '',
-                                view: item.view ?? ''           // ← corrección principal
+                                view: item.view ?? '',
+                                image: item.image ?? '', // ensure image is a string
                             }}
                         />
                     ))
