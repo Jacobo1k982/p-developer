@@ -41,7 +41,11 @@ const Recommendations = () => {
                     data?.map((item: Recommendation, key) => (
                         <RecommendationCard
                             key={key}
-                            data={{ ...item, designation: item.designation ?? '' }}
+                            data={{
+                                ...item,
+                                designation: item.designation ?? '',
+                                view: item.view ?? ''           // ← corrección principal
+                            }}
                         />
                     ))
                 )}

@@ -7,7 +7,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react'
 type RecommendationData = {
     name: string
     designation?: string
-    view: string
+    view: string           // ← ya no necesita ser opcional gracias al ?? '' de arriba
     image: string
     facebookURL: string
 }
