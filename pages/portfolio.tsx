@@ -21,7 +21,7 @@ interface Project {
 }
 
 const Portfolio = () => {
-    const pathname = usePathname();  // Ej: "/portfolio", "/portfolio/123", etc.
+    const pathname = usePathname(); 
 
     const { isLoading, error, data } = useQuery<Project[]>({
         queryKey: ["portfolio"],
@@ -48,7 +48,7 @@ const Portfolio = () => {
         return segments.map((segment, index) => {
             accumulatedPath += `/${segment}`;
             const isLast = index === segments.length - 1;
-            const label = segment === 'portfolio' ? 'Portafolio' : segment;
+            const label = segment === 'portfolio' ? 'Portfolio' : segment;
 
             return {
                 label: isLast ? label.charAt(0).toUpperCase() + label.slice(1) : label,
@@ -108,7 +108,7 @@ const Portfolio = () => {
                 </div>
 
                 {/* Grid de tarjetas estilo repositorios */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                     {isLoading ? (
                         // Skeleton mientras carga
                         [...Array(6)].map((_, i) => (

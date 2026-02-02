@@ -44,7 +44,7 @@
     "pages/api/background.js",
     "app/api/background/route.ts",
     ".next/dev/types/**/*.ts"
-, "pages/_app.tsx"  ],
+, "pages/_app.tsx", "pages/api/portfolio.ts"  ],
   "exclude": [
     "node_modules"
   ]
