@@ -1,9 +1,10 @@
-import { Html, Head, Main, NextScript } from 'next/document';
-import { Providers } from '../app/providers'; // Asegúrate que la ruta sea correcta
+// app/_document.tsx
+import { Html, Head, Main, NextScript } from 'next/document'
+import { Providers } from '../app/providers'
 
 export default function Document() {
   return (
-    <Html lang="es">
+    <Html lang="es" suppressHydrationWarning>
       <Head />
       <body>
         <Providers>
@@ -12,5 +13,5 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  );
+  )
 }
