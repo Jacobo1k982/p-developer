@@ -1,6 +1,6 @@
 'use client'
-
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
 import {
     Code,
     Database,
@@ -13,13 +13,14 @@ import {
     Layout,
     Smartphone,
     Palette
-} from 'lucide-react'
+} from 'lucide-react';
 
-interface ExpertiseCardProps {
+type ExpertiseCardProps = {
     data: {
         title: string
         desc: string
         tags?: string[]
+        icon?: React.ReactNode
     }
 }
 
@@ -36,7 +37,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?:
     // Agrega más mapeos según tus datos
 }
 
-const ExpertiseCard = ({ data }: ExpertiseCardProps) => {
+export default function ExpertiseCard({ data }: ExpertiseCardProps) {
     // Selecciona el icono basado en el título, si no existe usa Code por defecto
     const Icon = iconMap[data.title] || Code
 
@@ -121,5 +122,3 @@ const ExpertiseCard = ({ data }: ExpertiseCardProps) => {
         </motion.div>
     )
 }
-
-export default ExpertiseCard
