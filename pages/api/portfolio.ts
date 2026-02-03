@@ -87,7 +87,7 @@ const portfolio = [
         title: "Juego del Ahoracado",
         liveURL: "https://jacobo1k982.github.io/Juego-del-ahorcado/",
         image: "projects/juegoAhorcado.png",
-        desription: " El Juego del Ahorcado es una aplicación web interactiva desarrollada por Jacobo utilizando HTML, CSS y JavaScript puro. Este clásico juego desafía a los usuarios a adivinar una palabra oculta letra por letra, proporcionando retroalimentación visual y sonora para cada intento. Con un diseño sencillo pero atractivo, el proyecto resalta las habilidades de Jacobo en la creación de experiencias de usuario dinámicas y entretenidas sin depender de frameworks externos.",
+        description: " El Juego del Ahorcado es una aplicación web interactiva desarrollada por Jacobo utilizando HTML, CSS y JavaScript puro. Este clásico juego desafía a los usuarios a adivinar una palabra oculta letra por letra, proporcionando retroalimentación visual y sonora para cada intento. Con un diseño sencillo pero atractivo, el proyecto resalta las habilidades de Jacobo en la creación de experiencias de usuario dinámicas y entretenidas sin depender de frameworks externos.",
         technologies: [
             {
                 tech: "HTML"
