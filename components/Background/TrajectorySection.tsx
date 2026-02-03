@@ -6,8 +6,8 @@ import axios from 'axios'
 import { GraduationCap, Briefcase } from 'lucide-react'
 import ParagraphSkeleton from '@/components/Common/ParagraphSkeleton'
 // Importamos las tarjetas refactorizadas anteriormente
-import EducationCard from '@/components/HomeComponents/Education/EducationCard'
-import ExperienceCard from '@/components/HomeComponents/Experience/ExperienceCard'
+import EducationCard from '@/components/Background/EducationCard'
+import ExperienceCard from '@/components/Background/ExperienceCard'
 
 interface EduItem {
     id: string
