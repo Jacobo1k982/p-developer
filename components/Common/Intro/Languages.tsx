@@ -1,81 +1,41 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import CircularProgress from '@/components/CircularProgress'
 
+// Datos de idiomas (puedes mover esto a config.ts en el futuro)
+const languages = [
+    { code: 'es', name: 'Español', percent: 100 },
+    { code: 'en', name: 'Inglés', percent: 40 },
+]
+
 const Languages = () => {
-    const [spanish, setSpanish] = useState(0)
-    const [english, setEnglish] = useState(0)
-
-    useEffect(() => {
-        const targets = { spanish: 98, english: 40 }
-        const duration = 1800
-        let start: number | null = null
-
-        const animate = (timestamp: number) => {
-            if (!start) start = timestamp
-            const progress = Math.min((timestamp - start) / duration, 1)
-
-            setSpanish(Math.floor(targets.spanish * progress))
-            setEnglish(Math.floor(targets.english * progress))
-
-            if (progress < 1) {
-                requestAnimationFrame(animate)
-            }
-        }
-
-        requestAnimationFrame(animate)
-    }, [])
-
     return (
-        <div className="py-6">
-            <h3 className="
-        mb-5 text-xs font-semibold uppercase tracking-wider 
-        text-gray-500 dark:text-gray-400
-      ">
+        <div className="pt-6">
+            {/* Cabecera de sección */}
+            <h3 className="mb-5 text-xs font-bold uppercase tracking-widest text-gray-500 border-l-2 border-blue-500 pl-3">
                 Idiomas
             </h3>
 
-            <div className="flex items-center justify-center gap-12 sm:gap-20">
-                <div className="flex flex-col items-center group">
-                    <div className="relative transition-transform duration-300 group-hover:scale-105">
+            {/* Contenedor Horizontal Centrado */}
+            <div className="flex items-center justify-center gap-8">
+                {languages.map((lang) => (
+                    <div
+                        key={lang.code}
+                        className="flex flex-col items-center gap-3 group/lang"
+                    >
                         <CircularProgress
-                            percent={spanish}
-                            size={100}
-                            strokeWidth={12}
-                            className="drop-shadow-sm"
+                            percent={lang.percent}
+                            size={70} // Tamaño compacto ideal para sidebar
+                            strokeWidth={10}
+                            color="text-blue-500"
+                            trackColor="stroke-gray-800/50"
                         />
-                        <span className="
-              absolute inset-0 flex items-center justify-center 
-              text-2xl font-semibold text-gray-900 dark:text-gray-100
-            ">
-                            {spanish}%
+                        <span className="text-xs font-medium text-gray-400 group-hover/lang:text-blue-400 transition-colors">
+                            {lang.name}
                         </span>
                     </div>
-                    <span className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Español
-                    </span>
-                </div>
-
-                <div className="flex flex-col items-center group">
-                    <div className="relative transition-transform duration-300 group-hover:scale-105">
-                        <CircularProgress
-                            percent={english}
-                            size={100}
-                            strokeWidth={12}
-                            className="drop-shadow-sm"
-                        />
-                        <span className="
-              absolute inset-0 flex items-center justify-center 
-              text-2xl font-semibold text-gray-900 dark:text-gray-100
-            ">
-                            {english}%
-                        </span>
-                    </div>
-                    <span className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Inglés
-                    </span>
-                </div>
+                ))}
             </div>
         </div>
     )

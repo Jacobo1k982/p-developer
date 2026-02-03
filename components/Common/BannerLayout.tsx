@@ -1,33 +1,31 @@
-// components/Common/BannerLayout.tsx
-
 import Image, { StaticImageData } from 'next/image'
 import { ReactNode } from 'react'
 
-// Import estático de la imagen por defecto
+// Asegúrate de que esta ruta sea correcta o cambia la imagen
 import defaultBg from '@/public/images/background.png'
 
 interface BannerLayoutProps {
     children: ReactNode
-    backgroundImage?: StaticImageData   // Ahora es tipo StaticImageData
+    backgroundImage?: StaticImageData
     className?: string
 }
 
 const BannerLayout = ({
     children,
-    backgroundImage = defaultBg,        // Fallback usando import estático
+    backgroundImage = defaultBg,
     className = '',
 }: BannerLayoutProps) => {
     return (
         <section
             className={`
-        relative w-full min-h-screen md:min-h-[90vh] lg:min-h-screen
-        flex items-center justify-center overflow-hidden
-        bg-[#0d1117] text-white
-        ${className}
-      `}
+                relative min-h-screen md:min-h-[90vh] lg:min-h-screen
+                flex items-center justify-center overflow-hidden
+                bg-gray-950 text-white
+                ${className}
+            `}
         >
-            {/* Fondo: imagen + overlay sutil */}
-            <div className="absolute inset-0 z-0">
+            {/* 1. Fondo de Imagen (Layer 0) */}
+            <div className="absolute inset-0 z-0 opacity-20">
                 {backgroundImage ? (
                     <div className="relative w-full h-full">
                         <Image
@@ -35,23 +33,41 @@ const BannerLayout = ({
                             alt="Background abstract tech"
                             fill
                             priority
-                            quality={75}
+                            quality={85}
                             sizes="100vw"
-                            className="object-cover object-center brightness-[0.35] contrast-[0.9] saturate-[0.7]"
-                            placeholder="blur"   // Ahora sí es válido
+                            className="object-cover object-center"
+                            placeholder="blur"
                         />
                     </div>
                 ) : (
-                    // Fallback gradiente si no hay imagen (en la práctica no se usará)
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#0a192f] to-[#0d1117]" />
+                    // Fallback gradiente elegante si no hay imagen
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-black" />
                 )}
             </div>
 
-            {/* Overlay oscuro */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0d1117]/90 via-[#0d1117]/60 to-transparent pointer-events-none" />
+            {/* 2. Overlay Oscuro y Viñeta (Layer 1) */}
+            {/* Este gradiente oscurece la imagen para que el texto sea legible */}
+            <div className="
+                absolute inset-0 z-10 
+                bg-gradient-to-b 
+                from-gray-950/40 via-gray-950/20 to-gray-950 
+                pointer-events-none
+            " />
 
-            {/* Contenido principal */}
-            <div className="relative z-20 w-full max-w-7xl px-6 md:px-10 lg:px-12">
+            {/* 3. Gradiente Radial (Layer 2) - Foco en el centro */}
+            <div className="
+                absolute inset-0 z-10 
+                bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.8)_100%)]
+                pointer-events-none
+            " />
+
+            {/* 4. Contenido Principal (Layer 3) */}
+            <div className="
+                relative z-20 
+                w-full max-w-7xl 
+                px-4 sm:px-6 lg:px-8 
+                flex items-center justify-center
+            ">
                 {children}
             </div>
         </section>

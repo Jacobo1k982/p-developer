@@ -299,3 +299,12 @@ body {
     @apply bg-[#0d1117] text-[#c9d1d9];
   }
 }
+/* En tu archivo globals.css o styles.css */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+/* Firefox */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

@@ -1,206 +1,163 @@
-'use client';
+'use client'
 
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { GraduationCap, Briefcase, ExternalLink } from 'lucide-react';
-import ImageAndParagraphSkeleton from '@/components/Common/ImageAndParagraphSkeleton';
+import { motion } from 'framer-motion'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { GraduationCap, Briefcase } from 'lucide-react'
+import ParagraphSkeleton from '@/components/Common/ParagraphSkeleton'
+// Importamos las tarjetas refactorizadas anteriormente
+import EducationCard from '@/components/HomeComponents/Education/EducationCard'
+import ExperienceCard from '@/components/HomeComponents/Experience/ExperienceCard'
 
 interface EduItem {
-    id: string;
-    institution: string;
-    degree: string;
-    description: string;
-    period: string;
+    id: string
+    institution: string
+    degree: string
+    description: string
+    period: string
 }
 
 interface ExpItem {
-    id: string;
-    company: string;
-    role: string;
-    url: string | null;
-    description: string;
-    period: string;
-    location: string;
+    id: string
+    company: string
+    role: string
+    url: string | null
+    description: string
+    period: string
+    location: string
 }
 
 interface BackgroundData {
-    education: EduItem[];
-    experience: ExpItem[];
+    education: EduItem[]
+    experience: ExpItem[]
 }
 
 const TrajectorySection = () => {
     const { isLoading, error, data } = useQuery<BackgroundData>({
         queryKey: ['background'],
         queryFn: async () => {
-            const { data } = await axios.get('/background');
-            return data;
+            const { data } = await axios.get('/background')
+            return data
         },
-    });
+    })
 
-    const education = data?.education || [];
-    const experience = data?.experience || [];
+    const education = data?.education || []
+    const experience = data?.experience || []
 
     return (
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 bg-[#0d1117]/30 backdrop-blur-sm rounded-2xl border border-[#30363d]/50 shadow-2xl">
-            {/* Título principal */}
-            <div className="text-center mb-16 md:mb-20">
-                <h1 className="text-4xl md:text-5xl font-bold text-[#c9d1d9] tracking-tight">
-                    Mi Trayectoria
-                </h1>
-                <div className="mt-4 h-1 w-28 bg-[#58a6ff] mx-auto rounded-full opacity-80" />
+        <section className="relative py-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* Título de la Sección */}
+            <div className="text-center mb-20">
+                <motion.span
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    className="inline-block py-1 px-3 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-4"
+                >
+                    Trayectoria
+                </motion.span>
+                <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+                    Mi Historia Profesional
+                </h2>
+                <span className="block mt-4 h-1 w-20 bg-blue-500 rounded-full mx-auto"></span>
             </div>
 
-            {/* Timeline container */}
+            {/* Contenedor de la Línea de Tiempo */}
             <div className="relative">
-                {/* Línea vertical central (solo visible en desktop) */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#30363d] via-[#444c56] to-[#30363d] transform -translate-x-1/2 hidden md:block" />
+                {/* Línea Vertical Central (Solo Desktop) */}
+                <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-800 to-transparent transform -translate-x-1/2 hidden md:block" />
 
-                <div className="space-y-20 md:space-y-28">
-                    {/* ────────────── EDUCACIÓN ────────────── */}
-                    <section>
-                        <div className="flex items-center justify-center md:justify-start mb-10">
-                            <div className="flex items-center gap-3.5 px-7 py-3.5 rounded-full bg-[#161b22]/80 border border-[#30363d] backdrop-blur-sm shadow-lg">
-                                <div className="w-10 h-10 rounded-full bg-[#21262d] flex items-center justify-center border-2 border-[#58a6ff]/60">
-                                    <GraduationCap className="text-[#58a6ff]" size={22} />
+                <div className="space-y-24 md:space-y-32">
+
+                    {/* SECCIÓN: EDUCACIÓN */}
+                    <div className="relative">
+                        {/* Título de Sección (Centrado) */}
+                        <div className="flex items-center justify-center mb-12 md:mb-16 z-20 relative">
+                            <div className="flex items-center gap-3 bg-gray-900 border border-gray-800 px-6 py-3 rounded-full shadow-lg">
+                                <div className="p-2 bg-blue-500/10 rounded-full text-blue-500">
+                                    <GraduationCap size={20} />
                                 </div>
-                                <h2 className="text-2xl font-semibold text-[#c9d1d9]">Educación</h2>
+                                <h3 className="text-xl font-bold text-white">Formación Académica</h3>
                             </div>
                         </div>
 
-                        <div className="relative space-y-12 md:space-y-20">
+                        <div className="space-y-12 md:space-y-16">
                             {isLoading ? (
-                                [...Array(3)].map((_, i) => (
-                                    <div key={i} className="md:w-5/12 md:pr-12 md:ml-auto">
-                                        <div className="bg-[#161b22]/70 rounded-xl p-6 h-44">
-                                            <ImageAndParagraphSkeleton className="w-full h-full" />
-                                        </div>
+                                // Esqueletos en formato Timeline
+                                [1, 2].map((_, i) => (
+                                    <div key={i} className={`relative md:w-[45%] ${i % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+                                        <ParagraphSkeleton className="h-[250px] rounded-xl bg-gray-900/80" />
                                     </div>
                                 ))
-                            ) : error ? (
-                                <div className="text-center text-red-400 py-8">
-                                    No se pudo cargar la información de educación
-                                </div>
-                            ) : education.length === 0 ? (
-                                <p className="text-center text-[#8b949e] py-8 italic">
-                                    Aún no hay información de educación registrada
-                                </p>
                             ) : (
                                 education.map((item, idx) => (
-                                    <div
+                                    <motion.div
                                         key={item.id}
-                                        className={`relative md:w-5/12 ${idx % 2 === 0 ? 'md:mr-auto md:pr-12 md:text-right' : 'md:ml-auto md:pl-12'}`}
+                                        initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true, margin: "-100px" }}
+                                        transition={{ duration: 0.6, delay: idx * 0.1 }}
+                                        className={`
+                                            relative w-full md:w-[45%]
+                                            ${idx % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}
+                                        `}
                                     >
-                                        {/* Círculo en la línea (desktop) */}
-                                        <div className="absolute left-1/2 top-6 transform -translate-x-1/2 hidden md:block z-10">
-                                            <div className="w-14 h-14 rounded-full bg-[#0d1117] border-4 border-[#58a6ff]/70 flex items-center justify-center shadow-lg shadow-[#58a6ff]/10">
-                                                <GraduationCap className="text-[#58a6ff]" size={24} />
-                                            </div>
-                                        </div>
+                                        {/* Punto de conexión en la línea */}
+                                        <div className="absolute top-8 left-0 md:left-auto md:-left-[calc(12.5%-18px)] w-4 h-4 rounded-full bg-gray-900 border-4 border-blue-500 z-10 shadow-[0_0_10px_rgba(59,130,246,0.5)] hidden md:block" />
 
-                                        {/* Tarjeta */}
-                                        <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-6 md:p-7 hover:border-[#58a6ff]/40 hover:shadow-[0_0_20px_rgba(88,166,255,0.15)] transition-all duration-300 relative z-0">
-                                            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                                                <div>
-                                                    <h3 className="text-xl font-semibold text-[#c9d1d9]">{item.institution}</h3>
-                                                    <p className="text-base text-[#58a6ff] mt-1">{item.degree}</p>
-                                                </div>
-                                                <span className="text-sm font-mono text-[#8b949e] bg-[#0d1117]/70 px-4 py-1.5 rounded-full self-start md:self-center">
-                                                    {item.period}
-                                                </span>
-                                            </div>
-                                            <p className="text-[#8b949e] leading-relaxed text-sm md:text-base">
-                                                {item.description}
-                                            </p>
-                                        </div>
-                                    </div>
+                                        <EducationCard card={item} />
+                                    </motion.div>
                                 ))
                             )}
                         </div>
-                    </section>
+                    </div>
 
-                    {/* ────────────── EXPERIENCIA ────────────── */}
-                    <section>
-                        <div className="flex items-center justify-center md:justify-end mb-10">
-                            <div className="flex items-center gap-3.5 px-7 py-3.5 rounded-full bg-[#161b22]/80 border border-[#30363d] backdrop-blur-sm shadow-lg">
-                                <div className="w-10 h-10 rounded-full bg-[#21262d] flex items-center justify-center border-2 border-[#3fb950]/60">
-                                    <Briefcase className="text-[#3fb950]" size={22} />
+                    {/* SECCIÓN: EXPERIENCIA */}
+                    <div className="relative pt-8 md:pt-16">
+                        {/* Título de Sección */}
+                        <div className="flex items-center justify-center mb-12 md:mb-16 z-20 relative">
+                            <div className="flex items-center gap-3 bg-gray-900 border border-gray-800 px-6 py-3 rounded-full shadow-lg">
+                                <div className="p-2 bg-indigo-500/10 rounded-full text-indigo-500">
+                                    <Briefcase size={20} />
                                 </div>
-                                <h2 className="text-2xl font-semibold text-[#c9d1d9]">Experiencia</h2>
+                                <h3 className="text-xl font-bold text-white">Experiencia Laboral</h3>
                             </div>
                         </div>
 
-                        <div className="relative space-y-12 md:space-y-20">
+                        <div className="space-y-12 md:space-y-16">
                             {isLoading ? (
-                                [...Array(3)].map((_, i) => (
-                                    <div key={i} className="md:w-5/12 md:pl-12 md:mr-auto">
-                                        <div className="bg-[#161b22]/70 rounded-xl p-6 h-44">
-                                            <ImageAndParagraphSkeleton className="w-full h-full" />
-                                        </div>
+                                [1, 2, 3].map((_, i) => (
+                                    <div key={i} className={`relative md:w-[45%] ${i % 2 === 0 ? 'md:ml-auto md:pl-8' : 'md:mr-auto md:pr-8'}`}>
+                                        <ParagraphSkeleton className="h-[250px] rounded-xl bg-gray-900/80" />
                                     </div>
                                 ))
-                            ) : error ? (
-                                <div className="text-center text-red-400 py-8">
-                                    No se pudo cargar la información de experiencia
-                                </div>
-                            ) : experience.length === 0 ? (
-                                <p className="text-center text-[#8b949e] py-8 italic">
-                                    Aún no hay experiencia laboral registrada
-                                </p>
                             ) : (
                                 experience.map((item, idx) => (
-                                    <div
+                                    <motion.div
                                         key={item.id}
-                                        className={`relative md:w-5/12 ${idx % 2 === 0 ? 'md:ml-auto md:pl-12' : 'md:mr-auto md:pr-12 md:text-right'}`}
+                                        initial={{ opacity: 0, x: idx % 2 === 0 ? 50 : -50 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true, margin: "-100px" }}
+                                        transition={{ duration: 0.6, delay: idx * 0.1 }}
+                                        className={`
+                                            relative w-full md:w-[45%]
+                                            ${idx % 2 === 0 ? 'md:ml-auto md:pl-8' : 'md:mr-auto md:pr-8'}
+                                        `}
                                     >
-                                        {/* Círculo en la línea */}
-                                        <div className="absolute left-1/2 top-6 transform -translate-x-1/2 hidden md:block z-10">
-                                            <div className="w-14 h-14 rounded-full bg-[#0d1117] border-4 border-[#3fb950]/70 flex items-center justify-center shadow-lg shadow-[#3fb950]/10">
-                                                <Briefcase className="text-[#3fb950]" size={24} />
-                                            </div>
-                                        </div>
+                                        {/* Punto de conexión (Color indigo para diferenciar sutilmente) */}
+                                        <div className="absolute top-8 right-0 md:right-auto md:-left-[calc(12.5%-18px)] w-4 h-4 rounded-full bg-gray-900 border-4 border-indigo-500 z-10 shadow-[0_0_10px_rgba(99,102,241,0.5)] hidden md:block" />
 
-                                        {/* Tarjeta */}
-                                        <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-6 md:p-7 hover:border-[#3fb950]/40 hover:shadow-[0_0_20px_rgba(63,185,80,0.15)] transition-all duration-300 relative z-0">
-                                            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                                                <div>
-                                                    <div className="flex items-center gap-3">
-                                                        <h3 className="text-xl font-semibold text-[#c9d1d9]">{item.company}</h3>
-                                                        {item.url && item.url !== null && item.url !== '' && item.url.startsWith('http') && (
-                                                            <a
-                                                                href={item.url}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="text-[#8b949e] hover:text-[#3fb950] transition-colors"
-                                                                aria-label="Visitar sitio web"
-                                                            >
-                                                                <ExternalLink size={18} />
-                                                            </a>
-                                                        )}
-                                                    </div>
-                                                    <p className="text-base text-[#3fb950] mt-1">{item.role}</p>
-                                                </div>
-
-                                                <div className={idx % 2 === 0 ? 'md:text-right' : ''}>
-                                                    <span className="text-sm font-mono text-[#8b949e] bg-[#0d1117]/70 px-4 py-1.5 rounded-full block md:inline-block">
-                                                        {item.period}
-                                                    </span>
-                                                    <p className="text-xs text-[#8b949e] mt-1.5">{item.location}</p>
-                                                </div>
-                                            </div>
-
-                                            <p className="text-[#8b949e] leading-relaxed text-sm md:text-base">
-                                                {item.description}
-                                            </p>
-                                        </div>
-                                    </div>
+                                        <ExperienceCard card={item} />
+                                    </motion.div>
                                 ))
                             )}
                         </div>
-                    </section>
+                    </div>
+
                 </div>
             </div>
-        </div>
-    );
-};
+        </section>
+    )
+}
 
-export default TrajectorySection;
+export default TrajectorySection

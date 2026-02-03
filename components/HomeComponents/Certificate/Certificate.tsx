@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import ParagraphSkeleton from '@/components/Common/ParagraphSkeleton'
 import CertificateCard from '@/components/HomeComponents/Certificate/CertificateCard'
 
@@ -19,6 +20,9 @@ const Certificates = () => {
     const [error, setError] = useState<string | null>(null)
     const [data, setData] = useState<Certificate[]>([])
 
+    // Referencia para controlar el scroll
+    const scrollContainerRef = useRef<HTMLDivElement>(null)
+
     useEffect(() => {
         const fetchCertificates = async () => {
             try {
@@ -35,13 +39,7 @@ const Certificates = () => {
                         setData([])
                         return
                     }
-
-                    let errorMsg = `Error ${response.status}`
-                    try {
-                        const errData = await response.json()
-                        errorMsg = errData.error || errorMsg
-                    } catch { }
-                    throw new Error(errorMsg)
+                    throw new Error(`Error ${response.status}`)
                 }
 
                 const raw = await response.json()
@@ -57,46 +55,110 @@ const Certificates = () => {
         fetchCertificates()
     }, [])
 
-    return (
-        <>
-            <div className="px-4 md:px-8 py-5 text-xl font-semibold text-[#c9d1d9]">
-                Certificados
-            </div>
+    // Función para desplazar el carrusel
+    const scroll = (direction: 'left' | 'right') => {
+        if (scrollContainerRef.current) {
+            const { current } = scrollContainerRef
+            const scrollAmount = direction === 'left' ? -350 : 350
 
-            <div className="w-full px-4 md:px-8">
-                {isLoading ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {[1, 2, 3].map(i => (
-                            <ParagraphSkeleton
-                                key={i}
-                                className="h-64 rounded-xl bg-[#161b22]/70 border border-[#30363d]/50"
-                            />
-                        ))}
-                    </div>
-                ) : error ? (
-                    <div className="py-12 text-center text-red-400">
-                        {error}
-                    </div>
-                ) : data.length === 0 ? (
-                    <div className="py-12 text-center text-[#8b949e]">
-                        Aún no hay certificados para mostrar
-                    </div>
-                ) : (
-                    <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-[#58a6ff] scrollbar-track-[#161b22]">
-                        <div className="flex flex-row flex-nowrap gap-6 min-w-max">
-                            {data.map(cert => (
-                                <div
-                                    key={cert.id}
-                                    className="flex-shrink-0 w-80 sm:w-96"
-                                >
-                                    <CertificateCard data={cert} />
-                                </div>
-                            ))}
-                        </div>
+            current.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            })
+        }
+    }
+
+    return (
+        <section className="py-12 md:py-16 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Cabecera Unificada con el componente Cursos */}
+            <div className="mb-8 md:mb-10 flex justify-between items-end">
+                <div>
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                        Certificados Profesionales
+                    </h2>
+                    <span className="block mt-2 h-1 w-20 bg-blue-500 rounded-full"></span>
+                </div>
+
+                {/* Botones de navegación (Solo escritorio) */}
+                {!isLoading && data.length > 4 && (
+                    <div className="hidden md:flex gap-2">
+                        <button
+                            onClick={() => scroll('left')}
+                            className="p-2 rounded-full bg-gray-800 text-gray-300 hover:text-white hover:bg-blue-600 border border-gray-700 transition-all"
+                            aria-label="Anterior"
+                        >
+                            <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                            onClick={() => scroll('right')}
+                            className="p-2 rounded-full bg-gray-800 text-gray-300 hover:text-white hover:bg-blue-600 border border-gray-700 transition-all"
+                            aria-label="Siguiente"
+                        >
+                            <ChevronRight className="w-5 h-5" />
+                        </button>
                     </div>
                 )}
             </div>
-        </>
+
+            <div className="relative group/slider">
+                {/* Botones flotantes (Hover) para escritorio */}
+                <button
+                    onClick={() => scroll('left')}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 p-3 rounded-full bg-gray-900/90 text-white shadow-xl border border-gray-700 opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-blue-600 hidden md:block"
+                    aria-label="Scroll izquierda"
+                >
+                    <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                    onClick={() => scroll('right')}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 p-3 rounded-full bg-gray-900/90 text-white shadow-xl border border-gray-700 opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-blue-600 hidden md:block"
+                    aria-label="Scroll derecha"
+                >
+                    <ChevronRight className="w-6 h-6" />
+                </button>
+
+                {isLoading ? (
+                    // Esqueletos en modo carrusel horizontal
+                    <div ref={scrollContainerRef} className="flex overflow-x-auto gap-6 pb-8 hide-scrollbar snap-x snap-mandatory">
+                        {Array.from({ length: 4 }).map((_, i) => (
+                            <div key={i} className="min-w-[85%] md:min-w-[calc(33.333%-1rem)] snap-center">
+                                <ParagraphSkeleton className="h-64 rounded-xl bg-gray-900/80 border border-gray-800" />
+                            </div>
+                        ))}
+                    </div>
+                ) : error ? (
+                    <div className="text-center py-10 bg-gray-900/30 rounded-xl border border-dashed border-gray-700">
+                        <p className="text-red-400">{error}</p>
+                    </div>
+                ) : data.length === 0 ? (
+                    <div className="text-center py-10 bg-gray-900/30 rounded-xl border border-dashed border-gray-700">
+                        <p className="text-gray-400">No hay certificados registrados.</p>
+                    </div>
+                ) : (
+                    // CARRUSEL PRINCIPAL
+                    <div
+                        ref={scrollContainerRef}
+                        className="flex overflow-x-auto gap-6 pb-8 pt-2 snap-x snap-mandatory scroll-smooth hide-scrollbar"
+                    >
+                        {data.map((cert) => (
+                            <div
+                                key={cert.id}
+                                // Mobile: 85% (Peek effect)
+                                // Desktop: 1/3 exacto del ancho
+                                className="min-w-[85%] md:min-w-[calc(33.333%-1rem)] snap-center"
+                            >
+                                <CertificateCard data={cert} />
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            {/* Indicador visual de scroll (Solo móvil) */}
+            <div className="md:hidden flex justify-center mt-2 opacity-30">
+                <div className="w-12 h-1 bg-gray-500 rounded-full"></div>
+            </div>
+        </section>
     )
 }
 

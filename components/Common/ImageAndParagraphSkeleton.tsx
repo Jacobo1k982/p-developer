@@ -1,50 +1,49 @@
 'use client'
 
 import React from 'react'
+import { ImageIcon } from 'lucide-react'
 
-interface ImageAndParagraphSkeletonProps {
+interface ParagraphSkeletonProps {
     className?: string
 }
 
-const ImageAndParagraphSkeleton = ({ className = '' }: ImageAndParagraphSkeletonProps) => {
+const ParagraphSkeleton = ({ className = '' }: ParagraphSkeletonProps) => {
     return (
         <div
             role="status"
             className={`
-        rounded-lg border border-[#30363d]
-        bg-[#161b22]
-        p-4 md:p-6 shadow-sm
-        animate-pulse
-        max-w-2xl
-        ${className}
-      `}
+                relative w-full h-full
+                rounded-xl
+                bg-gray-900 border border-gray-800
+                p-6 shadow-sm
+                overflow-hidden
+                ${className}
+            `}
         >
-            {/* Image placeholder */}
-            <div className="flex items-center justify-center h-48 mb-4 rounded bg-[#21262d]">
-                <svg
-                    className="w-12 h-12 text-[#444c56]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 640 512"
-                >
-                    <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
-                </svg>
+            {/* Placeholder de Imagen (Header) */}
+            <div className="
+                w-full aspect-[4/3] 
+                bg-gray-800/50 rounded-lg 
+                flex items-center justify-center mb-6
+            ">
+                <ImageIcon className="w-12 h-12 text-gray-700/30" />
             </div>
 
-            {/* Title skeleton */}
-            <div className="h-3 rounded bg-[#30363d] w-48 mb-4"></div>
+            {/* Placeholder de Título */}
+            <div className="h-6 w-3/4 mb-4 rounded-md bg-gray-800 animate-pulse" />
 
-            {/* Paragraph skeletons */}
-            <div className="h-2.5 rounded bg-[#30363d] mb-2.5"></div>
-            <div className="h-2.5 rounded bg-[#30363d] mb-2.5"></div>
-            <div className="h-2.5 rounded bg-[#30363d] w-4/5 mb-2.5"></div>
-            <div className="h-2.5 rounded bg-[#30363d] w-3/5"></div>
+            {/* Placeholders de Párrafos */}
+            <div className="space-y-3">
+                <div className="h-3 w-full rounded-md bg-gray-800 animate-pulse" />
+                <div className="h-3 w-5/6 rounded-md bg-gray-800 animate-pulse" />
+                <div className="h-3 w-11/12 rounded-md bg-gray-800 animate-pulse" />
+                <div className="h-3 w-2/3 rounded-md bg-gray-800 animate-pulse" />
+            </div>
 
-            {/* Screen reader text */}
-            <span className="sr-only">Cargando...</span>
+            {/* Texto para lectores de pantalla */}
+            <span className="sr-only">Cargando contenido...</span>
         </div>
     )
 }
 
-export default ImageAndParagraphSkeleton
+export default ParagraphSkeleton

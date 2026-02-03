@@ -1,102 +1,139 @@
 'use client'
 
-import Link from 'next/link'
-import { FaDownload, FaGithub, FaLinkedin } from 'react-icons/fa'
-import Contact from '@/components/Common/Intro/Contact'
-import Download from '@/components/Download'
-import Languages from '@/components/Common/Intro/Languages'
-import Location from '@/components/Common/Intro/Location'
-import Tools from '@/components/Common/Intro/Tools'
-import Skills from '@/components/Common/Intro/Skills'
-import Image from 'next/image'
-import { NAME, DESIGNATION, SOCIAL_LINKS } from '@/constants/constants'
-import React from 'react'
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { X, Github, Linkedin } from 'lucide-react';
 
-const Intro: React.FC<{
+// Componentes refactorizados
+import Contact from '@/components/Common/Intro/Contact';
+import Download from '@/components/Download';
+import Skills from '@/components/Common/Intro/Skills';
+import TechRoles from '@/components/TechRoles';
+import Tools from '@/components/Common/Intro/Tools';
+import Languages from '@/components/Common/Intro/Languages';
+
+// Configuración
+import { PORTFOLIO_CONFIG } from '@/components/constants/config';
+
+interface IntroProps {
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ isOpen, setIsOpen }) => {
+}
+
+const Intro: React.FC<IntroProps> = ({ isOpen, setIsOpen }) => {
   return (
     <>
-      {/* Header fijo - siempre dark */}
-      <div
-        className="
-          absolute top-0 inset-x-0 z-50
-          h-60
-          flex flex-col items-center justify-center
-          bg-[#0d1117]
-          border-b border-[#30363d]
-          px-5
-        "
-      >
-        <div className="flex flex-col items-center">
-          <Image
-            className="
-              w-24 h-24 rounded-full
-              border-4 border-[#161b22]
-              ring-1 ring-[#30363d]/70
-              object-cover
-              shadow-md
-            "
-            src="/hero2.png"
-            alt={`${NAME} profile`}
-            width={96}
-            height={96}
-            priority
-          />
+      {/* Overlay (Solo móvil) */}
+      {isOpen && (
+        <div 
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity md:hidden"
+            onClick={() => setIsOpen(false)}
+        />
+      )}
 
-          <div className="mt-3 text-center">
-            <p className="text-lg font-semibold text-[#c9d1d9]">
-              {NAME}
-            </p>
-            <p className="text-xs text-[#8b949e] mt-0.5">
-              {DESIGNATION}
+      {/* PANEL PRINCIPAL */}
+      <aside className={`
+        fixed inset-y-0 left-0 z-50 
+        w-full md:w-[400px] 
+        bg-gray-950 
+        shadow-2xl shadow-black/50 
+        transform transition-transform duration-300 ease-in-out
+        flex flex-col
+        
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
+        md:translate-x-0
+      `}>
+        
+        {/* HEADER */}
+        <div className="relative flex-shrink-0 flex flex-col items-center p-6 pb-8 border-b border-gray-800 bg-gray-950/95 backdrop-blur-md">
+          
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 p-2 text-gray-500 hover:text-white transition-colors rounded-full hover:bg-gray-900 md:hidden"
+            aria-label="Cerrar menú"
+          >
+            <X size={20} />
+          </button>
+
+          <div className="relative mt-4 mb-4">
+            <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl"></div>
+            <Image
+              className="relative w-24 h-24 rounded-full border-4 border-gray-900 shadow-xl object-cover"
+              src="/hero2.png"
+              alt={`${PORTFOLIO_CONFIG.personal.name} profile`}
+              width={96}
+              height={96}
+              priority
+            />
+            <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-4 border-gray-950"></div>
+          </div>
+
+          <div className="text-center z-10">
+            <h2 className="text-xl font-bold text-white tracking-tight">
+                {PORTFOLIO_CONFIG.personal.name}
+            </h2>
+            <p className="text-sm text-blue-400 font-medium mt-1">
+                {PORTFOLIO_CONFIG.personal.tagline}
             </p>
           </div>
         </div>
-      </div>
 
-      {/* Contenido central - siempre dark */}
-      <div className="
-        z-20 pt-60 pb-12 px-4 space-y-6 overflow-y-auto no-scrollbar
-        bg-[#0d1117]
-      ">
-        <div className="space-y-6 divide-y divide-[#30363d]">
-          <Location />
-          <Languages />
-          <Skills />
-          <Tools />
-          <Contact />
-          <Download icon={<FaDownload />} />
+        {/* BODY */}
+        <div className="flex-grow overflow-y-auto px-6 py-10 space-y-12 no-scrollbar bg-gray-950">
+            
+            {/* 1. Stack Tecnológico (Tags) */}
+            <section>
+                <TechRoles />
+                <Tools />
+                <Languages />
+            </section>
+
+            {/* 2. Habilidades (Modo LISTA vertical) */}
+            {/* Forzamos layout="list" para que se organice limpiamente en 1 columna */}
+            <section>
+                <Skills layout="list" />
+            </section>
+
+            {/* 3. Contacto (Incluye Ubicación, Email y Teléfono) */}
+            {/* Usamos el componente Contact que ya organiza esto verticalmente */}
+            <section>
+                <Contact />
+            </section>
+
+            {/* 4. Descargar CV */}
+            <section>
+                <Download />
+            </section>
+
         </div>
-      </div>
 
-      {/* Footer fijo - siempre dark */}
-      <div className="
-        absolute bottom-0 inset-x-0 z-50 h-12 
-        flex items-center justify-center space-x-6 
-        bg-[#0d1117] 
-        border-t border-[#30363d] 
-        text-[#8b949e] text-xl
-      ">
-        <Link
-          href={SOCIAL_LINKS.GITHUB}
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-white transition-colors"
-        >
-          <FaGithub />
-        </Link>
+        {/* FOOTER */}
+        <div className="flex-shrink-0 p-6 border-t border-gray-800 bg-gray-950/95 backdrop-blur-md">
+            <div className="flex items-center justify-center gap-8">
+                <Link
+                    href={PORTFOLIO_CONFIG.socials.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-110"
+                    aria-label="GitHub"
+                >
+                    <Github size={24} />
+                </Link>
 
-        <Link
-          href={SOCIAL_LINKS.LINKEDIN}
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-[#0a66c2] transition-colors"
-        >
-          <FaLinkedin />
-        </Link>
-      </div>
+                <Link
+                    href={PORTFOLIO_CONFIG.socials.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-gray-400 hover:text-blue-500 transition-all duration-300 hover:scale-110"
+                    aria-label="LinkedIn"
+                >
+                    <Linkedin size={24} />
+                </Link>
+            </div>
+        </div>
+
+      </aside>
     </>
   )
 }

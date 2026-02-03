@@ -1,116 +1,120 @@
-// components/ExpertiseCard.tsx
 'use client'
 
 import { motion } from 'framer-motion'
-import { Code, Database, Globe, Server, Terminal, Zap, Cpu, Layers } from 'lucide-react'
+import {
+    Code,
+    Database,
+    Globe,
+    Server,
+    Terminal,
+    Zap,
+    Cpu,
+    Layers,
+    Layout,
+    Smartphone,
+    Palette
+} from 'lucide-react'
 
 interface ExpertiseCardProps {
     data: {
         title: string
         desc: string
-        tags?: string[] // opcional: para hacerlos dinámicos
+        tags?: string[]
     }
 }
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number }>> = {
-    Frontend: Globe,
+// Mapa de iconos basado en el título exacto
+const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>> = {
+    Frontend: Layout,       // Cambiado a Layout para mejor representación
     Backend: Server,
     'Full Stack': Code,
-    DevOps: Database,
+    DevOps: Terminal,       // Cambiado a Terminal para DevOps
     Performance: Zap,
-    TypeScript: Terminal,
+    TypeScript: Code,       // O podría ser Layers
     React: Layers,
     'System Design': Cpu,
-    // Agrega más según necesites
+    // Agrega más mapeos según tus datos
 }
 
 const ExpertiseCard = ({ data }: ExpertiseCardProps) => {
+    // Selecciona el icono basado en el título, si no existe usa Code por defecto
     const Icon = iconMap[data.title] || Code
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            // Animación de Hover (Interacción)
             whileHover={{
-                y: -8,
-                scale: 1.02,
-                transition: { type: 'spring', stiffness: 300, damping: 20 }
+                y: -5,
+                transition: { duration: 0.2, ease: "easeOut" }
             }}
             className={`
-        group relative
-        rounded-2xl overflow-hidden
-        bg-[#0d1117]/70 backdrop-blur-xl border border-[#30363d]/50
-        shadow-[0_8px_32px_rgba(0,0,0,0.5)]
-        hover:shadow-[0_16px_48px_rgba(88,166,255,0.18)]
-        hover:border-[#58a6ff]/40
-        transition-all duration-400
-      `}
+                group relative h-full
+                rounded-2xl overflow-hidden
+                bg-gray-900 border border-gray-800
+                hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-900/10
+                transition-all duration-300
+            `}
         >
-            {/* Subtle inner glow on hover */}
+            {/* Efecto de brillo interno sutil al hacer hover */}
             <div className="
-        absolute inset-0 opacity-0 group-hover:opacity-30 
-        bg-gradient-to-br from-[#58a6ff]/10 via-transparent to-transparent
-        pointer-events-none transition-opacity duration-500
-      " />
+                absolute inset-0 opacity-0 group-hover:opacity-100 
+                bg-gradient-to-br from-blue-500/5 via-transparent to-transparent
+                pointer-events-none transition-opacity duration-500
+            " />
 
-            {/* Contenido principal */}
-            <div className="p-7 flex flex-col h-full">
-                <div className="flex items-center gap-4 mb-5">
-                    {/* Icono con fondo sutil */}
+            {/* Contenido */}
+            <div className="p-6 md:p-7 flex flex-col h-full relative z-10">
+                {/* Cabecera: Icono y Título */}
+                <div className="flex items-center gap-4 mb-4">
                     <div className="
-            flex items-center justify-center w-14 h-14 
-            rounded-xl bg-[#161b22]/80 border border-[#30363d]/70
-            text-[#58a6ff]/90 group-hover:text-[#79c0ff]
-            transition-colors duration-300
-          ">
+                        flex items-center justify-center w-12 h-12 md:w-14 md:h-14 
+                        rounded-xl bg-gray-800/50 border border-gray-700/50
+                        text-blue-500 
+                        group-hover:bg-blue-500/10 group-hover:text-blue-400 
+                        transition-all duration-300
+                    ">
                         <Icon size={28} strokeWidth={1.5} />
                     </div>
 
                     <h3 className="
-            text-2xl font-semibold text-white tracking-tight
-            group-hover:text-[#58a6ff] transition-colors duration-300
-          ">
+                        text-xl md:text-2xl font-bold text-white tracking-tight
+                        group-hover:text-blue-400 transition-colors duration-300
+                    ">
                         {data.title}
                     </h3>
                 </div>
 
+                {/* Descripción */}
                 <p className="
-          text-base leading-relaxed text-gray-300/90
-          group-hover:text-gray-200 transition-colors duration-300
-          mb-6 flex-grow
-        ">
+                    text-sm md:text-base leading-relaxed text-gray-400
+                    group-hover:text-gray-300 transition-colors duration-300
+                    mb-6 flex-grow
+                ">
                     {data.desc}
                 </p>
 
-                {/* Tags dinámicos o estáticos */}
+                {/* Tags (Etiquetas) */}
                 {data.tags && data.tags.length > 0 ? (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-auto">
                         {data.tags.map((tag, idx) => (
                             <span
                                 key={idx}
                                 className="
-                  px-3 py-1 text-xs font-medium rounded-full
-                  bg-[#161b22]/60 border border-[#30363d]/50
-                  text-gray-300 group-hover:text-[#c9d1d9]
-                  transition-all duration-300
-                  hover:bg-[#21262d] hover:border-[#58a6ff]/30
-                "
+                                    px-3 py-1 text-[10px] md:text-xs font-medium rounded-full
+                                    bg-gray-800 text-gray-400 border border-gray-700/50
+                                    group-hover:border-gray-600 group-hover:text-gray-300
+                                    transition-colors duration-300
+                                "
                             >
                                 {tag}
                             </span>
                         ))}
                     </div>
                 ) : (
-                    // Ejemplo fallback si no pasas tags
-                    <div className="flex flex-wrap gap-2 opacity-80">
-                        <span className="px-3 py-1 text-xs font-medium rounded-full bg-[#161b22]/60 border border-[#30363d]/50 text-gray-400">
-                            Modern Stack
-                        </span>
-                        <span className="px-3 py-1 text-xs font-medium rounded-full bg-[#161b22]/60 border border-[#30363d]/50 text-gray-400">
-                            Scalable
-                        </span>
+                    // Fallback decorativo si no hay tags (opcional, para rellenar espacio visual)
+                    <div className="mt-auto opacity-40 flex gap-2">
+                        <div className="w-8 h-2 rounded-full bg-gray-700"></div>
+                        <div className="w-16 h-2 rounded-full bg-gray-700"></div>
                     </div>
                 )}
             </div>

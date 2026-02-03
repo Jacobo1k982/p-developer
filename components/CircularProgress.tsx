@@ -6,36 +6,42 @@ interface CircularProgressProps {
     percent: number
     size?: number
     strokeWidth?: number
-    color?: string          // color principal del progreso
-    trackColor?: string     // color del círculo de fondo
-    textColor?: string      // color del texto %
+    color?: string           // color del círculo de progreso (usa currentColor)
+    trackColor?: string      // color del círculo de fondo (Track)
+    textColor?: string        // color del texto del porcentaje
     className?: string
     animateFromZero?: boolean
 }
 
 const CircularProgress = ({
     percent,
-    size = 90,
+    size = 100,
     strokeWidth = 10,
-    color = 'currentColor',               // hereda de tailwind (ej: text-[#58a6ff])
-    trackColor = 'stroke-[#30363d]',      // ← dark fijo: gris oscuro GitHub
-    textColor = 'text-[#c9d1d9]',         // ← dark fijo: texto claro principal
+    color = 'currentColor',
+    trackColor = 'stroke-gray-800/50', // ← Gris translúcido elegante
+    textColor = 'text-white',           // ← Blanco puro para alto contraste
     className = '',
     animateFromZero = false,
 }: CircularProgressProps) => {
+
     const radius = (size - strokeWidth) / 2
     const circumference = 2 * Math.PI * radius
 
+    // Cálculo del offset
     const offset = circumference - (percent / 100) * circumference
+
+    // Lógica de animación inicial
     const initialOffset = animateFromZero ? circumference : offset
 
     return (
         <div
             className={`
-        relative flex items-center justify-center transition-transform duration-300
-        hover:scale-[1.04] group
-        ${className}
-      `}
+                relative inline-flex items-center justify-center
+                transition-transform duration-300 ease-out
+                hover:scale-105 cursor-default group
+                text-blue-500 // ← Color por defecto (azul) que se aplica a 'currentColor'
+                ${className}
+            `}
             style={{ width: size, height: size }}
         >
             <svg
@@ -44,17 +50,21 @@ const CircularProgress = ({
                 viewBox={`0 0 ${size} ${size}`}
                 className="absolute inset-0 transform -rotate-90"
             >
-                {/* Círculo de fondo (track) */}
+                {/* Círculo de Fondo (Track) */}
                 <circle
                     cx={size / 2}
                     cy={size / 2}
                     r={radius}
                     fill="none"
-                    className={`transition-colors duration-500 ${trackColor}`}
+                    className={`
+                        transition-colors duration-700
+                        ${trackColor}
+                    `}
                     strokeWidth={strokeWidth}
+                    strokeLinecap="round" // Bordes redondeados para elegancia
                 />
 
-                {/* Círculo de progreso */}
+                {/* Círculo de Progreso */}
                 <circle
                     cx={size / 2}
                     cy={size / 2}
@@ -66,34 +76,33 @@ const CircularProgress = ({
                     strokeDashoffset={initialOffset}
                     strokeLinecap="round"
                     className={`
-            transition-all duration-1000 ease-out
-            group-hover:stroke-opacity-90
-          `}
+                        transition-all duration-1000 ease-out
+                        group-hover:opacity-90 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] // ← Sutil brillo en hover
+                    `}
                     style={{
                         strokeDashoffset: offset,
-                        transitionProperty: 'stroke-dashoffset, stroke',
                     }}
                 />
             </svg>
 
-            {/* Texto del porcentaje */}
+            {/* Texto del Porcentaje */}
             <div
-                className={`
-          absolute inset-0 flex items-center justify-center 
-          pointer-events-none select-none
-        `}
+                className="
+                    absolute inset-0 flex items-center justify-center 
+                    pointer-events-none select-none
+                "
             >
                 <span
                     className={`
-            text-2xl font-bold tracking-tight
-            drop-shadow-sm
-            ${textColor}
-            transition-all duration-500
-            group-hover:scale-110
-          `}
+                        text-xl md:text-2xl font-bold tracking-tight
+                        drop-shadow-sm
+                        ${textColor}
+                        transition-transform duration-500
+                        group-hover:scale-110
+                    `}
                 >
                     {percent}
-                    <span className="text-lg font-semibold opacity-80">%</span>
+                    <span className="text-sm md:text-base font-medium opacity-80 ml-[-2px]">%</span>
                 </span>
             </div>
         </div>

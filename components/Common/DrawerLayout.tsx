@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { X } from 'lucide-react'
 
 interface DrawerLayoutProps {
   setIsOpen: (isOpen: boolean) => void
@@ -10,78 +11,70 @@ interface DrawerLayoutProps {
 
 const DrawerLayout = ({ setIsOpen, isOpen, children }: DrawerLayoutProps) => {
   return (
-    <main
+    // Wrapper: Maneja la visibilidad general del drawer
+    <div
       className={`
-        fixed overflow-hidden z-[50000] inset-0 transform ease-in-out
-        ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+        fixed inset-0 z-[60] 
+        transition-opacity duration-300 ease-in-out
+        ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
       `}
     >
-      {/* Overlay */}
+      {/* Overlay: Fondo oscuro desenfocado */}
       <section
+        onClick={() => setIsOpen(false)}
         className={`
-          absolute inset-0 w-full h-full cursor-pointer 
-          bg-black/40 backdrop-blur-md
+          absolute inset-0 bg-black/60 backdrop-blur-sm
           transition-opacity duration-300
           ${isOpen ? 'opacity-100' : 'opacity-0'}
         `}
-        onClick={() => setIsOpen(false)}
       />
 
-      {/* Drawer panel – siempre dark */}
+      {/* Panel del Drawer */}
       <section
         className={`
-          absolute right-0 top-0 h-screen w-screen max-w-[320px]
-          bg-[#0d1117] border-l border-[#30363d]
+          absolute right-0 top-0 bottom-0 
+          w-full sm:max-w-[400px]
+          bg-gray-950 border-l border-gray-800
           shadow-2xl
-          transition-transform duration-300 ease-in-out transform
+          transform transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
       >
-        <article className="relative h-screen overflow-y-auto">
-          {/* Header con botón cerrar */}
+        <div className="relative h-full flex flex-col">
+
+          {/* Header Fijo */}
           <div className="
-            sticky top-0 z-10 bg-[#161b22]/95 backdrop-blur-md 
-            border-b border-[#30363d] px-5 py-4 
-            flex justify-between items-center
+            sticky top-0 z-10 
+            flex items-center justify-between 
+            px-6 py-5 
+            border-b border-gray-800 
+            bg-gray-950/95 backdrop-blur-md
           ">
-            <h2 className="text-lg font-semibold text-[#c9d1d9]">
-              Menú
+            <h2 className="text-lg font-bold text-white">
+              Menú Rápido
             </h2>
+
             <button
               onClick={() => setIsOpen(false)}
               className="
-                inline-flex items-center justify-center rounded-md p-2
-                text-[#8b949e] hover:text-[#c9d1d9]
-                hover:bg-[#21262d]
+                p-2 rounded-lg
+                text-gray-400 hover:text-white hover:bg-gray-800
                 transition-colors duration-200
-                focus:outline-none focus:ring-2 focus:ring-[#58a6ff]/40
-                focus:ring-offset-2 focus:ring-offset-[#0d1117]
               "
               aria-label="Cerrar menú"
             >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <X size={20} strokeWidth={2} />
             </button>
           </div>
 
-          {/* Contenido del drawer */}
-          <div className="px-5 py-6 text-[#c9d1d9]">
+          {/* Contenido Scrollable */}
+          <div className="flex-grow overflow-y-auto px-6 py-6 text-gray-300 no-scrollbar">
             {children}
           </div>
-        </article>
+
+        </div>
       </section>
-    </main>
+    </div>
   )
 }
 

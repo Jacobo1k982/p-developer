@@ -13,26 +13,29 @@ const Badge = ({
     variant = 'default',
     className = ''
 }: BadgeProps) => {
+
     const variantStyles = {
-        default: 'bg-[#21262d] text-[#c9d1d9] border border-[#30363d]',
-        secondary: 'bg-[#30363d] text-[#d1d5db] border border-[#444c56]',
-        outline: 'bg-transparent border border-[#444c56] text-[#d1d5db]',
-        success: 'bg-[#1a2e22] text-[#86efac] border border-[#2f855a]/60',
-        warning: 'bg-[#2d2a1f] text-[#fde047] border border-[#b45309]/60',
-        danger: 'bg-[#2d1a1f] text-[#f87171] border border-[#991b1b]/60',
+        default: 'bg-gray-800/80 border border-gray-700 text-gray-300',
+        secondary: 'bg-gray-900/50 border border-gray-800 text-gray-400',
+        outline: 'bg-transparent border border-gray-600 text-gray-400',
+        success: 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400',
+        warning: 'bg-amber-500/10 border border-amber-500/20 text-amber-400',
+        danger: 'bg-rose-500/10 border border-rose-500/20 text-rose-400',
     }
 
     return (
         <span
             className={`
-        inline-flex items-center
-        px-3 py-1
-        text-xs font-medium
-        rounded-full
-        transition-colors duration-200
-        ${variantStyles[variant]}
-        ${className}
-      `}
+                inline-flex items-center justify-center
+                px-3 py-1.5
+                text-[11px] md:text-xs font-semibold uppercase tracking-wider
+                rounded-full
+                shadow-sm
+                transition-all duration-200
+                hover:brightness-110 active:scale-95
+                ${variantStyles[variant]}
+                ${className}
+            `}
         >
             {title}
         </span>

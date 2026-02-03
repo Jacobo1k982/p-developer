@@ -3,11 +3,10 @@
 import { motion } from 'framer-motion'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import ExpertiseCard from './ExpertiseCard'
+import ExpertiseCard from '@/components/HomeComponents/Expertise/ExpertiseCard'
 import ParagraphSkeleton from '@/components/Common/ParagraphSkeleton'
-import { cn } from '@/lib/utils'
 
-// Importa TODOS los íconos que usas en iconMap
+// Importa los íconos que necesitas para pasarlos a las tarjetas
 import {
     Globe,
     Server,
@@ -17,14 +16,17 @@ import {
     Terminal,
     Layers,
     Cpu,
+    Layout,
+    Smartphone,
+    Palette
 } from 'lucide-react'
 
-// Define the Expertise type if not imported from elsewhere
 type Expertise = {
     id: string | number
     title: string
     desc: string
-    // Puedes agregar tags?: string[] si lo usas
+    // Agregamos un campo opcional para el nombre del icono si tu API lo devuelve
+    iconName?: string
 }
 
 const containerVariants = {
@@ -45,8 +47,8 @@ const itemVariants = {
         y: 0,
         transition: {
             type: 'spring' as const,
-            stiffness: 120,
-            damping: 14
+            stiffness: 100,
+            damping: 12
         }
     }
 }
@@ -62,17 +64,29 @@ const MyExpertise = () => {
         retry: 2
     })
 
+    // Mapa de iconos basado en palabras clave del título (Fallback si la API no envía el icono)
+    const getIconForTitle = (title: string) => {
+        const lowerTitle = title.toLowerCase()
+        if (lowerTitle.includes('frontend') || lowerTitle.includes('react') || lowerTitle.includes('ui')) return Layout
+        if (lowerTitle.includes('backend') || lowerTitle.includes('server')) return Server
+        if (lowerTitle.includes('database') || lowerTitle.includes('sql')) return Database
+        if (lowerTitle.includes('design') || lowerTitle.includes('css')) return Palette
+        if (lowerTitle.includes('mobile') || lowerTitle.includes('app')) return Smartphone
+        if (lowerTitle.includes('devops')) return Terminal
+        return Code // Default
+    }
+
     if (error) {
         return (
-            <section className="py-20 px-4 text-center">
-                <div className="mx-auto max-w-3xl rounded-xl border border-[#30363d] bg-[#0d1117] p-10">
-                    <h2 className="mb-4 text-2xl font-semibold text-[#f85149]">
+            <section className="py-12 px-4 text-center">
+                <div className="mx-auto max-w-3xl rounded-xl border border-red-900/50 bg-red-900/10 p-10">
+                    <h2 className="mb-4 text-2xl font-semibold text-red-400">
                         No se pudo cargar la experiencia
                     </h2>
-                    <p className="text-[#8b949e]">
-                        Algo salió mal al obtener la matriz de habilidades.
+                    <p className="text-gray-400">
+                        Algo salió mal al obtener las habilidades.
                     </p>
-                    <p className="mt-2 text-sm text-[#6e7681]">
+                    <p className="mt-2 text-sm text-gray-500">
                         {error instanceof Error ? error.message : 'Unknown error'}
                     </p>
                 </div>
@@ -81,45 +95,54 @@ const MyExpertise = () => {
     }
 
     return (
-        <section className="relative bg-[#0d1117] py-20 md:py-24 lg:py-36 border-t border-[#21262d]">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                {/* Header estilo GitHub section */}
-                <div className="mb-12 md:mb-16 text-center">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-                        Habilidad
-                    </h2>
-                    <p className="text-lg text-[#8b949e]">
-                        Tecnologías y habilidades centrales con las que trabajo a diario
-                    </p>
-                </div>
+        <section className="py-12 md:py-16 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Cabecera Unificada */}
+            <div className="mb-10 md:mb-12 text-center">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                    Mis Habilidades
+                </h2>
+                <span className="block mt-2 h-1 w-20 bg-blue-500 rounded-full mx-auto"></span>
+                <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
+                    Tecnologías y herramientas con las que construyo soluciones robustas y escalables.
+                </p>
+            </div>
 
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: '-80px' }}
-                    className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-                >
-                    {isLoading
-                        ? Array.from({ length: 6 }).map((_, i: number) => (
-                            <motion.div key={i} variants={itemVariants}>
-                                <div className="h-[280px] rounded-xl border border-[#30363d] bg-[#161b22] animate-pulse" />
-                            </motion.div>
-                        ))
-                        : data?.map((item: Expertise, idx: number) => (
-                            <motion.div key={item.id || idx} variants={itemVariants}>
-                                <ExpertiseCard data={item} />
-                            </motion.div>
-                        ))}
-                </motion.div>
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: '-50px' }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            >
+                {isLoading ? (
+                    // Skeletons coincidiendo con el grid
+                    Array.from({ length: 6 }).map((_, i) => (
+                        <motion.div key={i} variants={itemVariants}>
+                            <ParagraphSkeleton
+                                className="h-[240px] rounded-xl bg-gray-900/80 border border-gray-800"
+                            />
+                        </motion.div>
+                    ))
+                ) : data && data.length > 0 ? (
+                    data?.map((item) => {
+                        // Seleccionamos el icono
+                        const IconComponent = getIconForTitle(item.title)
 
-                {/* Opcional: footer sutil */}
-                {!isLoading && data?.length === 0 && (
-                    <div className="mt-12 text-center text-[#8b949e]">
-                        Aún no hay datos de experiencia disponibles.
+                        return (
+                            <motion.div key={item.id} variants={itemVariants}>
+                                <ExpertiseCard
+                                    data={item}
+                                    icon={<IconComponent className="w-10 h-10 text-blue-500" />}
+                                />
+                            </motion.div>
+                        )
+                    })
+                ) : (
+                    <div className="col-span-full text-center py-12 text-gray-500">
+                        No hay habilidades registradas todavía.
                     </div>
                 )}
-            </div>
+            </motion.div>
         </section>
     )
 }
