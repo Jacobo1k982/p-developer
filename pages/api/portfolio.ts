@@ -1,3 +1,5 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
+
 const portfolio = [
     {
         id: "bordados-alca",
@@ -101,6 +103,6 @@ const portfolio = [
         ]
     }
 ]
-export default function handler(req, res) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
     res.status(200).json(portfolio)
 }
