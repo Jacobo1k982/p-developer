@@ -1,21 +1,26 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useState } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export function Providers({ children }: { children: React.ReactNode }) {
+    // Estado para mantener una sola instancia del cliente durante el ciclo de vida de la app
     const [queryClient] = useState(
         () =>
             new QueryClient({
                 defaultOptions: {
                     queries: {
-                        staleTime: 1000 * 60,
-                        gcTime: 1000 * 60 * 5,
+                        staleTime: 60 * 1000,
+                        gcTime: 5 * 60 * 1000,
                         refetchOnWindowFocus: false,
                     },
                 },
             })
-    )
+    );
 
-    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    return (
+        <QueryClientProvider client={queryClient}>
+            {children}
+        </QueryClientProvider>
+    );
 }

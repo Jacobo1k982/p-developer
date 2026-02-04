@@ -1,29 +1,40 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2",
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1fdf64] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1117]",
     {
         variants: {
             variant: {
+                // Primario: Verde de marca con Glow
                 default:
-                    "bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600",
+                    "bg-[#1fdf64] text-[#0d1117] hover:bg-[#1fdf64]/90 hover:shadow-[0_0_20px_rgba(29,223,100,0.3)] hover:-translate-y-0.5",
+
+                // Destrucción: Rojo tenue con efecto hover suave
                 destructive:
-                    "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500",
+                    "bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 hover:shadow-[0_0_15px_rgba(239,68,68,0.2)] hover:text-red-300",
+
+                // Borde: Estilo Glass con borde que brilla en verde
                 outline:
-                    "border border-gray-300 bg-white hover:bg-gray-50 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700",
+                    "border border-white/10 bg-transparent text-gray-300 hover:border-[#1fdf64]/50 hover:text-[#1fdf64] hover:bg-[#1fdf64]/5",
+
+                // Secundario: Fondo gris oscuro sólido
                 secondary:
-                    "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600",
+                    "bg-[#161b22] text-gray-300 hover:bg-gray-800 hover:text-white border border-white/5",
+
+                // Fantasma: Solo efecto de fondo
                 ghost:
-                    "hover:bg-gray-100 text-gray-900 dark:hover:bg-gray-700 dark:text-gray-100",
-                link: "text-gray-900 underline-offset-4 hover:underline dark:text-gray-100",
+                    "text-gray-400 hover:bg-white/5 hover:text-white",
+
+                // Link: Subrayado animado
+                link: "text-gray-400 underline-offset-4 hover:text-[#1fdf64] hover:underline decoration-[#1fdf64]/50",
             },
             size: {
-                default: "h-9 px-4 py-2",
+                default: "h-10 px-6 py-2",
                 sm: "h-8 rounded-md px-3 text-xs",
-                lg: "h-11 rounded-md px-8",
-                icon: "h-9 w-9",
+                lg: "h-12 rounded-xl px-8 text-base font-semibold tracking-wide",
+                icon: "h-9 w-9 rounded-lg",
             },
         },
         defaultVariants: {
@@ -31,7 +42,7 @@ const buttonVariants = cva(
             size: "default",
         },
     }
-)
+);
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -43,7 +54,7 @@ function Button({ className, variant, size, ...props }: ButtonProps) {
             className={cn(buttonVariants({ variant, size, className }))}
             {...props}
         />
-    )
+    );
 }
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };

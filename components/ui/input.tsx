@@ -1,5 +1,5 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 export interface InputProps
     extends React.InputHTMLAttributes<HTMLInputElement> { }
@@ -9,17 +9,26 @@ function Input({ className, type, ...props }: InputProps) {
         <input
             type={type}
             className={cn(
-                "flex h-9 w-full rounded-md border border-gray-300 bg-white px-3 py-1 text-sm text-gray-900 shadow-sm transition-colors",
-                "placeholder:text-gray-400",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 focus-visible:border-transparent",
-                "disabled:cursor-not-allowed disabled:opacity-50",
-                "dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-500",
-                "dark:focus-visible:ring-gray-500",
+                // Base Layout & Theme
+                "flex h-10 w-full rounded-xl border border-white/10 bg-[#161b22] px-4 py-2 text-sm text-gray-100 shadow-sm transition-all duration-200",
+
+                // Placeholder & Typography
+                "placeholder:text-gray-500 focus-visible:outline-none",
+
+                // Focus States: Green Glow & Border Highlight
+                "focus-visible:border-[#1fdf64] focus-visible:ring-2 focus-visible:ring-[#1fdf64]/20 focus-visible:ring-offset-0",
+
+                // Disabled State
+                "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-white/5 disabled:border-white/5",
+
+                // File Input Styling (Browser consistency)
+                "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-gray-300",
+
                 className
             )}
             {...props}
         />
-    )
+    );
 }
 
-export { Input }
+export { Input };

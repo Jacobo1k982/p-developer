@@ -1,12 +1,13 @@
 'use client';
 
-import { ImCross } from 'react-icons/im'
-import { FiAward } from 'react-icons/fi'
-import { FaHandshake } from 'react-icons/fa'
-import { ImHome } from 'react-icons/im'
-import { HiIdentification } from 'react-icons/hi'
-import NavItem from './NavItem'
-import DrawerLayout from '../DrawerLayout'
+import { ImCross } from 'react-icons/im';
+import { FiAward } from 'react-icons/fi';
+import { FaHandshake } from 'react-icons/fa';
+import { ImHome } from 'react-icons/im';
+import { HiIdentification } from 'react-icons/hi';
+
+import NavItem from './NavItem';
+import DrawerLayout from '../DrawerLayout';
 
 const Nav = ({ setIsOpen, isOpen }) => {
     return (
@@ -15,33 +16,36 @@ const Nav = ({ setIsOpen, isOpen }) => {
                 className="
           fixed inset-y-0 right-0 z-50 
           w-72 lg:w-80 
-          bg-[#161b22] text-[#c9d1d9] 
-          border-l border-[#30363d]
-          shadow-lg
+          bg-[#161b22]/95 text-[#c9d1d9] 
+          border-l border-[#30363d] border-t border-[#1fdf64]/20
+          shadow-2xl
           flex flex-col
-          antialiased
+          antialiased backdrop-blur-xl
+          transition-transform duration-300 ease-out
         "
             >
                 {/* Header con botón cerrar */}
-                <div className="flex items-center justify-between px-5 py-3 border-b border-[#30363d]">
-                    <span className="text-sm font-semibold text-[#8b949e]">Menú</span>
+                <div className="flex items-center justify-between px-6 py-5 border-b border-[#30363d] bg-[#0d1117]/30">
+                    <span className="text-sm font-bold uppercase tracking-widest text-gray-500">
+                        Navegación
+                    </span>
                     <button
                         onClick={() => setIsOpen(false)}
                         className="
-              p-1.5 rounded-md 
-              text-[#8b949e] hover:text-[#c9d1d9] 
-              hover:bg-[#21262d] 
-              transition-colors duration-200
-              cursor-pointer
+              flex items-center justify-center
+              w-8 h-8 rounded-full 
+              text-gray-500 transition-all duration-300 
+              hover:bg-red-500/10 hover:text-red-400
+              hover:rotate-90
             "
                         aria-label="Cerrar menú"
                     >
-                        <ImCross size={14} />
+                        <ImCross size={12} />
                     </button>
                 </div>
 
                 {/* Lista de navegación */}
-                <nav className="flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto">
+                <nav className="flex-1 px-4 py-6 flex flex-col gap-2 overflow-y-auto no-scrollbar">
                     <NavItem
                         setIsOpen={setIsOpen}
                         NavRoute="/"
@@ -68,13 +72,16 @@ const Nav = ({ setIsOpen, isOpen }) => {
                     />
                 </nav>
 
-                {/* Opcional: footer pequeño */}
-                <div className="px-5 py-4 text-xs text-[#484f58] border-t border-[#30363d]">
-                    © {new Date().getFullYear()} Desarrollado por Jacobo Gutiérrez
+                {/* Footer */}
+                <div className="px-6 py-5 text-xs text-center border-t border-[#30363d] bg-[#0d1117]/30">
+                    <p className="text-gray-500">
+                        © {new Date().getFullYear()} Desarrollado por{' '}
+                        <span className="text-[#1fdf64] font-medium">Jacobo Gutiérrez</span>
+                    </p>
                 </div>
             </div>
         </DrawerLayout>
-    )
-}
+    );
+};
 
-export default Nav
+export default Nav;

@@ -3,13 +3,45 @@
 @tailwind utilities;
 
 /* ============================
+   FONTS
+============================ */
+/* Se mueven fuera de las capas para asegurar carga prioritaria */
+@font-face {
+  font-family: 'cascadia-normal';
+  src: url('/fonts/Cascadia.ttf');
+}
+
+@font-face {
+  font-family: 'circular-light';
+  src: url('/fonts/Circular-Light.otf');
+}
+
+@font-face {
+  font-family: 'circular-normal';
+  src: url('/fonts/Circular-Book.otf');
+}
+
+@font-face {
+  font-family: 'circular-medium';
+  src: url('/fonts/Circular-Medium.otf');
+}
+
+@font-face {
+  font-family: 'circular-bold';
+  src: url('/fonts/Circular-Bold.otf');
+}
+
+/* ============================
    GLOBAL STYLES
 ============================ */
 body {
-  background-color: #000 !important;
+  /* Se unifica el color de fondo con el base layer */
+  background-color: #0d1117; 
+  color: #c9d1d9;
   overflow: hidden;
   height: 100vh;
-  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ============================
@@ -31,50 +63,25 @@ body {
   .input_stylings {
     @apply bg-DeepNightBlack text-SilverGray text-sm rounded-lg outline-none focus:ring-1 focus:ring-Green block w-full pl-10 p-2.5;
   }
-
-  /* ============================
-     CUSTOM FONTS
-  ============================ */
-  @font-face {
-    font-family: 'cascadia-normal';
-    src: url(/public/fonts/Cascadia.ttf);
-  }
-
-  @font-face {
-    font-family: 'circular-light';
-    src: url(/public/fonts/Circular-Light.otf);
-  }
-
-  @font-face {
-    font-family: 'circular-normal';
-    src: url(/public/fonts/Circular-Book.otf);
-  }
-
-  @font-face {
-    font-family: 'circular-medium';
-    src: url(/public/fonts/Circular-Medium.otf);
-  }
-
-  @font-face {
-    font-family: 'circular-bold';
-    src: url(/public/fonts/Circular-Bold.otf);
-  }
 }
 
 /* ============================
-   SCROLLBAR
+   SCROLLBAR & UTILITIES
 ============================ */
 @layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
+  /* Ocultar scrollbar */
+  .no-scrollbar::-webkit-scrollbar,
+  .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
 
-  .no-scrollbar {
+  .no-scrollbar,
+  .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
-  /* Modern scrollbar */
+  /* Estilos de Scrollbar Moderno */
   ::-webkit-scrollbar {
     width: 5px;
     height: 4px;
@@ -97,74 +104,57 @@ body {
 }
 
 /* ============================
-   ICON ANIMATION
+   ANIMATIONS
 ============================ */
+/* Icon Animation */
 .icon {
   animation: scale-icon 1s infinite ease-in-out;
 }
 
 @keyframes scale-icon {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.06);
-  }
-
-  100% {
-    transform: scale(1);
-  }
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
 }
 
-/* ============================
-   ANT DESIGN OVERRIDES
-============================ */
-.ant-progress-text {
-  color: white !important;
-}
-
-.ant-modal .ant-modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent !important;
-  height: 200px;
-}
-
-/* ============================
-   SHADOWS & INTERACTION
-============================ */
-.boxShodow:hover {
-  box-shadow: rgba(31, 223, 100, 1) 0px 2px 5px -1px,
-    rgba(31, 223, 100, 1) 0px 1px 3px -1px;
-}
-
-/* ============================
-   INPUT ICON FOCUS EFFECTS
-============================ */
-.userIcon:focus-within #icon,
-.mailIcon:focus-within #icon,
-.textIcon:focus-within #icon {
-  color: #1fdf64;
-}
-
+/* Rotations */
 @keyframes rotate-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
+
+@keyframes rotate-slow-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
 .animate-rotate-slow {
   animation: rotate-slow 40s linear infinite;
 }
 
-@keyframes pulse-slow {
+.animate-rotate-slow-reverse {
+  animation: rotate-slow-reverse 55s linear infinite;
+}
+
+/* Pulses */
+@keyframes slow-pulse {
+  0%, 100% { opacity: 0.25; }
+  50%      { opacity: 0.45; }
+}
+
+@keyframes pulse-custom {
   0%, 100% { opacity: 0.4; transform: scale(1); }
   50%      { opacity: 0.8; transform: scale(1.05); }
 }
+
 .animate-pulse-slow {
-  animation: pulse-slow 8s ease-in-out infinite;
+  animation: pulse-custom 8s ease-in-out infinite;
 }
+
+.animate-slow-pulse {
+  animation: slow-pulse 18s ease-in-out infinite;
+}
+
+/* Glitch */
 @keyframes glitch {
   0%   { transform: translate(0); }
   20%  { transform: translate(-4px, 4px); }
@@ -186,67 +176,9 @@ body {
   animation: glitch 0.6s infinite linear alternate-reverse;
 }
 
-.animate-pulse-slow {
-  animation: pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-@keyframes slow-pulse {
-  0%, 100% { opacity: 0.25; }
-  50%      { opacity: 0.45; }
-}
-@keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@keyframes rotate-slow-reverse {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(-360deg); }
-}
-
-.animate-slow-pulse    { animation: slow-pulse 18s ease-in-out infinite; }
-.animate-rotate-slow   { animation: rotate-slow 40s linear infinite; }
-.animate-rotate-slow-reverse { animation: rotate-slow-reverse 55s linear infinite; }
-
 /* ============================
-   EMBLA CAROUSEL - Required & Fixed
+   EMBLA CAROUSEL - Consolidated
 ============================ */
-
-/* Outer wrapper (optional, pero útil para estilos) */
-.embla {
-  /* Puedes agregar padding o max-width si lo necesitas */
-}
-
-/* Viewport: OBLIGATORIO overflow hidden + ref aquí */
-.embla__viewport {
-  overflow: hidden;
-}
-
-/* Container: fuerza flex horizontal */
-.embla__container {
-  display: flex;
-  flex-wrap: nowrap !important;
-  touch-action: pan-y pinch-zoom;
-}
-
-/* Slides: no se achican, base para tamaños */
-.embla__slide {
-  flex: 0 0 auto;
-  flex-shrink: 0 !important;
-  min-width: 0;
-  min-height: 100%;             /* mantiene altura uniforme */
-  scroll-snap-align: start;
-}
-
-/* Peek effect elegante en móvil (opcional) */
-@media (max-width: 640px) {
-  .embla__slide {
-    opacity: 0.75;
-    transition: opacity 0.4s ease;
-  }
-  .embla__slide.is-selected {
-    opacity: 1;
-  }
-}
-/* Fuerza extrema para Embla - pon al FINAL del archivo */
 .embla__viewport {
   overflow: hidden !important;
   width: 100% !important;
@@ -254,20 +186,28 @@ body {
 
 .embla__container {
   display: flex !important;
-  flex-direction: row !important;     /* fuerza horizontal */
+  flex-direction: row !important;
   flex-wrap: nowrap !important;
-  width: max-content !important;      /* permite que crezca horizontalmente */
+  width: max-content !important;
   touch-action: pan-y pinch-zoom !important;
 }
 
 .embla__slide {
   flex: 0 0 auto !important;
   flex-shrink: 0 !important;
-  width: 85% !important;              /* fallback para móvil */
   min-width: 0 !important;
+  min-height: 100%;
+  scroll-snap-align: start;
+  /* Peek effect in mobile */
+  opacity: 0.75;
+  transition: opacity 0.4s ease;
 }
 
-/* Mobile peek (opcional) */
+.embla__slide.is-selected {
+  opacity: 1;
+}
+
+/* Responsive Sizes for Embla */
 @media (max-width: 640px) {
   .embla__slide {
     width: 85% !important;
@@ -291,6 +231,40 @@ body {
     width: 25% !important;
   }
 }
+
+/* ============================
+   ANT DESIGN & OVERRIDES
+============================ */
+.ant-progress-text {
+  color: white !important;
+}
+
+.ant-modal .ant-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent !important;
+  height: 200px;
+}
+
+/* ============================
+   SHADOWS & INTERACTIONS
+============================ */
+.boxShodow:hover {
+  box-shadow: rgba(31, 223, 100, 1) 0px 2px 5px -1px,
+    rgba(31, 223, 100, 1) 0px 1px 3px -1px}
+
+/* Input Icon Focus Effects */
+.userIcon:focus-within #icon,
+.mailIcon:focus-within #icon,
+.textIcon:focus-within #icon {
+  color: #1fdf64;
+}
+
+/* ============================
+   BASE LAYER (Tailwind Ext)
+============================ */
 @layer base {
   html {
     @apply bg-[#0d1117] text-[#c9d1d9];
@@ -298,13 +272,4 @@ body {
   body {
     @apply bg-[#0d1117] text-[#c9d1d9];
   }
-}
-/* En tu archivo globals.css o styles.css */
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-/* Firefox */
-.hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }

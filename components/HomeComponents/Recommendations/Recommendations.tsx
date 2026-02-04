@@ -24,7 +24,7 @@ const Recommendations = () => {
     })
 
     return (
-        <section className="py-12 md:py-16 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-12 md:py-5 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Cabecera Unificada */}
             <div className="mb-10 md:mb-12 text-center md:text-left">
                 <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">

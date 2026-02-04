@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import React, { Dispatch, SetStateAction } from 'react'
-import DrawerLayout from '@/components/Common/DrawerLayout'
-import Intro from '@/components/Common/Intro/index'
+import React, { Dispatch, SetStateAction } from 'react';
+import DrawerLayout from '@/components/Common/DrawerLayout';
+import Intro from '@/components/Common/Intro/index';
 
 interface DrawerIntroProps {
-    setIsOpen: Dispatch<SetStateAction<boolean>>
-    isOpen: boolean
+    isOpen: boolean;
+    setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const DrawerIntro = ({ setIsOpen, isOpen }: DrawerIntroProps) => {
+export default function DrawerIntro({ isOpen, setIsOpen }: DrawerIntroProps) {
     return (
-        <DrawerLayout setIsOpen={setIsOpen} isOpen={isOpen}>
+        <DrawerLayout isOpen={isOpen} setIsOpen={setIsOpen}>
             <Intro isOpen={isOpen} setIsOpen={setIsOpen} />
         </DrawerLayout>
-    )
+    );
 }

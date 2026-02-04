@@ -35,7 +35,7 @@ const Intro: React.FC<IntroProps> = ({ isOpen, setIsOpen }) => {
       {/* PANEL PRINCIPAL */}
       <aside className={`
         fixed inset-y-0 left-0 z-50 
-        w-full md:w-[400px] 
+        w-full md:w-[370px] 
         bg-gray-950 
         shadow-2xl shadow-black/50 
         transform transition-transform duration-300 ease-in-out

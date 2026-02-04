@@ -5,18 +5,19 @@ import Layout from '@/components/Common/layout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  // Importante: useState + factory function → solo se crea una vez
+export default function MyApp({ Component, pageProps }: AppProps) {
+  // Estrategia de Singleton para QueryClient
+  // useState inicializa el cliente solo una vez, manteniendo la caché
+  // entre las transiciones de ruta sin reiniciar el estado.
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: {
           queries: {
-            // Recomendaciones comunes 2025–2026
-            staleTime: 1000 * 60,      // 1 minuto – ajusta según tus necesidades
-            gcTime: 1000 * 60 * 5,     // 5 minutos (antes cacheTime)
-            refetchOnWindowFocus: false,
-            retry: 1,                  // menos reintentos por default
+            staleTime: 60 * 1000, // 1 minuto
+            gcTime: 5 * 60 * 1000, // 5 minutos
+            refetchOnWindowFocus: false, // Evita re-fetch al volver a la pestaña
+            retry: 1, // Menos reintentos agresivos
           },
         },
       })
@@ -30,5 +31,3 @@ function MyApp({ Component, pageProps }: AppProps) {
     </QueryClientProvider>
   );
 }
-
-export default MyApp;
