@@ -11,6 +11,15 @@ export default function handler(
     try {
         const data = [
             {
+                id: "cert",
+                title: "Desarrollo Full Stack G7 - ONE",
+                issuer: "Alura Latam (Oracle)",
+                date: "Marzo 2024",
+                credentialId: "00001234531",
+                credentialUrl: "",
+                imageUrl: "/images/certificados/fullstack.png"
+            },
+            {
                 id: "cert-001",
                 title: "Formación lógica de programación con JavaScript",
                 issuer: "Alura Latam (Oracle)",

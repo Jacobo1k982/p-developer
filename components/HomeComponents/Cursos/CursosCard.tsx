@@ -28,7 +28,7 @@ const CursosCard = ({ data }: CursosCardProps) => {
                     <img 
                         src={imageUrl} 
                         alt={issuer || 'Curso'} 
-                        className="w-16 h-16 object-contain rounded-lg bg-gray-800/50 p-2"
+                        className="w-18 h-18 object-contain rounded-lg bg-gray-800/0"
                     />
                 ) : (
                     // Si no hay imagen, mostramos un icono por defecto
