@@ -82,7 +82,7 @@ const Banner = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto md:mx-0"
             >
-              Transformando ideas complejas en soluciones digitales elegantes. <br />
+              Construyo el puente entre la interactividad moderna del frontend y la eficiencia lógica del backend, garantizando sistemas seguros, limpios y fáciles de mantener. <br />
               Especializado en <span className="text-gray-200 font-medium">Next.js</span>, <span className="text-gray-200 font-medium">TypeScript</span> y arquitecturas escalables.
             </motion.p>
 
@@ -127,7 +127,7 @@ const Banner = () => {
           className="mt-20 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
         >
           {[
-            { value: '15+', label: 'Proyectos' },
+            { value: '6+', label: 'Proyectos' },
             { value: '3+', label: 'Clientes' },
             { value: '100+', label: 'Commits' },
             { value: '24/7', label: 'Uptime' },
