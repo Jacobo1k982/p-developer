@@ -16,7 +16,7 @@ const Nav = ({ setIsOpen, isOpen }) => {
                 className="
           fixed inset-y-0 right-0 z-50 
           w-72 lg:w-80 
-          bg-[#161b22]/95 text-[#c9d1d9] 
+          bg-gray-950/95 text-[#c9d1d9] 
           border-l border-[#30363d] border-t border-[#1fdf64]/20
           shadow-2xl
           flex flex-col

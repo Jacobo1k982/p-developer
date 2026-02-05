@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { PORTFOLIO_CONFIG } from '@/components/constants/config'
 
-// Mapa actualizado para coincidir EXACTAMENTE con los nombres en PORTFOLIO_CONFIG.techStack
+// Mapa base
 const iconMap: Record<string, string> = {
   'JavaScript': 'javascript',
   'React.JS': 'react',
@@ -27,15 +27,18 @@ const iconMap: Record<string, string> = {
   'Adobe XD': 'xd',
   'Visual Studio Code': 'vscode',
   'PhotoShop': 'photoshop',
-  'UX/UI Design': 'ui', 
+  'UX/UI Design': 'ui',
   'Bootstrap': 'bootstrap',
   'Express.JS': 'express',
 }
 
 const Tools = () => {
   const technologies = PORTFOLIO_CONFIG.techStack || []
-  const [visible, setVisible] = useState(false)
 
+  // Iniciamos visible inmediatamente para evitar problemas de renderizado
+  const [visible, setVisible] = useState(true)
+
+  // (Opcional) Mantenemos el efecto si quieres animación, pero setVisible(true) lo activa ya
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 100)
     return () => clearTimeout(timer)
@@ -50,22 +53,38 @@ const Tools = () => {
       {/* Grid de Iconos */}
       <div className="grid grid-cols-4 gap-x-4 gap-y-6">
         {technologies.map((tech, index) => {
-          // Buscamos el código exacto en el mapa
-          const code = iconMap[tech]
-          
-          // URL de skillicons (modo dark)
-          const url = `https://skillicons.dev/icons?i=${code}&theme=dark&perline=4`
+          let code = iconMap[tech]
+
+          if (!code) {
+            const normalized = tech.toLowerCase().replace(/[\s.]/g, '')
+            // Excepciones específicas de nombres en la API vs texto común
+            const exceptions: Record<string, string> = {
+              'visualstudiocode': 'vscode',
+              'adobexd': 'xd',
+              'adobephotoshop': 'photoshop',
+              'uxuidesign': 'ui'
+            }
+            code = exceptions[normalized] || normalized
+          }
+
+          // Si el código queda vacío, usamos 'html' como fallback para no tener URL rota
+          const finalCode = code || 'html'
+          const url = `https://skillicons.dev/icons?i=${finalCode}&theme=dark&perline=4`
 
           return (
             <div
               key={tech}
               className={`
                 flex items-center justify-center 
-                p-2 rounded-lg hover:bg-gray-900/50
-                transition-all duration-500 ease-out
+                p-2 rounded-lg 
+                transition-all duration-300
+                bg-gray-900/40 hover:bg-blue-900/40 /* Fondo visible para debug y estilo */
+                border border-transparent hover:border-blue-500/30
+                
                 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
               `}
               style={{ transitionDelay: `${index * 50}ms` }}
+              title={tech} // Tooltip para ver qué tecnología es si el icono falla
             >
               <img
                 src={url}
@@ -74,16 +93,15 @@ const Tools = () => {
                 height={48}
                 className="
                   object-contain 
-                  filter grayscale opacity-70 
-                  hover:grayscale-0 hover:opacity-100 hover:scale-110
-                  transition-all duration-300
+                  /* Eliminamos grayscale y opacity reducida para asegurar visibilidad */
+                  hover:scale-110
+                  transition-transform duration-300
                 "
                 onError={(e) => {
-                  // Fallback si skillicons no tiene el icono específico
-                  // Intentamos usar el nombre del tech como parámetro directo
-                  if (!code) {
-                      (e.currentTarget as HTMLImageElement).src = `https://skillicons.dev/icons?i=generic&theme=dark`
-                  }
+                  // Fallback definitivo: Un icono genérico si el específico falla
+                  (e.currentTarget as HTMLImageElement).src = `https://skillicons.dev/icons?i=generic&theme=dark`
+                  // Añadimos una clase inline para identificarlo visualmente en consola
+                  console.error(`Icono no encontrado para: ${tech} (Código: ${finalCode})`)
                 }}
               />
             </div>
@@ -92,8 +110,8 @@ const Tools = () => {
       </div>
 
       {technologies.length === 0 && (
-        <p className="mt-4 text-center text-sm text-gray-600 italic">
-            No hay iconos disponibles
+        <p className="mt-4 text-center text-sm text-gray-600 italic bg-gray-900 p-2 rounded">
+          Configura "techStack" en tu archivo config.ts para ver los iconos.
         </p>
       )}
     </div>

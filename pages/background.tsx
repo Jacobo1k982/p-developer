@@ -87,7 +87,7 @@ function Background() {
     }, [])
 
     return (
-        <div className="relative min-h-screen bg-gradient-to-b from-[#0d1117] to-[#0a0e14]">
+        <div className="relative min-h-screen bg-gray-950">
             {/* Contenedor principal */}
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-16 md:pt-24">
                 {/* Título premium */}

@@ -11,7 +11,7 @@ const Banner = () => {
     <section className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 py-16 md:py-0 overflow-hidden">
 
       {/* 1. FONDO AMBIENTE (Profundidad y Luces) */}
-      <div className="absolute inset-0 z-0 bg-[#020617]"> {/* Fondo muy oscuro, casi negro */}
+      <div className="absolute inset-0 z-0 bg-gray-950"> {/* Fondo muy oscuro, casi negro */}
         {/* Orbe Azul superior-izquierda */}
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] opacity-40 animate-pulse-slow" />
         {/* Orbe Violeta inferior-derecha */}

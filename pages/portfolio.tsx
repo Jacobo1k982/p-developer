@@ -122,7 +122,7 @@ const Portfolio = () => {
                             [...Array(6)].map((_, i) => (
                                 <div
                                     key={`skeleton-${i}`}
-                                    className="rounded-2xl overflow-hidden border border-white/5 bg-[#0d1117]/50"
+                                    className="rounded-2xl overflow-hidden border border-white/5 bg-950/50"
                                 >
                                     <ImageAndParagraphSkeleton className="w-full aspect-[4/3]" />
                                     <div className="p-6 space-y-4">

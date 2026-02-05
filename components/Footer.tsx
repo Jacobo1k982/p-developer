@@ -7,7 +7,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="relative w-full bg-gray-950 pt-12 pb-8 overflow-hidden">
+        <footer className="relative w-full bg-gray-950/50 pt-12 pb-8 overflow-hidden">
 
             {/* Línea decorativa superior (Gradiente sutil) */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent opacity-50" />

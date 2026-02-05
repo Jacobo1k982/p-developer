@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <div className="h-screen lg:p-[0.8rem] flex flex-col select-none font-sans antialiased bg-[#0d1117] text-[#c9d1d9]">
       {/* Mobile top bar - siempre dark */}
       <div className="lg:hidden">
-        <div className="bg-[#161b22] text-[#c9d1d9] w-full h-10 flex items-center justify-between px-2 border-b border-[#30363d]">
+        <div className="bg-[#222216] text-[#c9d1d9] w-full h-10 flex items-center justify-between px-2 border-b border-[#30363d]">
           <div className="icon flex items-center gap-x-2 cursor-pointer" onClick={() => setIntro(!intro)}>
             <span className="icon border-2 border-[#58a6ff] text-[#58a6ff] p-1 text-sm rounded-md">
               <SlOptionsVertical />

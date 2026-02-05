@@ -9,7 +9,7 @@ import Cursos from '../components/HomeComponents/Cursos/Cursos';
 
 const Home = () => {
     return (
-        <div className="Home-Page -z-10 bg-[#0d1117]">
+        <div className="Home-Page -z-10 bg-gray-950">
             <Banner />
             <MyExpertise />
             <Recommendations />

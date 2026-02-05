@@ -97,7 +97,7 @@ const Contact = () => {
     ]
 
     return (
-        <div className="min-h-screen flex flex-col bg-[#0d1117]">
+        <div className="min-h-screen flex flex-col bg-gray-950">
             <main className="flex-1 px-4 py-8 max-w-4xl mx-auto w-full">
                 {/* Información de contacto */}
                 <div className="mb-12">
@@ -106,7 +106,7 @@ const Contact = () => {
                     </h1>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        <Card className="p-6 bg-[#161b22] border-[#30363d]">
+                        <Card className="p-6 bg-gray-900/50 border-[#30363d]">
                             <div className="space-y-4">
                                 {contactInfo.map((item, index) => (
                                     <div key={index} className="flex justify-between items-center">
@@ -121,7 +121,7 @@ const Contact = () => {
                             </div>
                         </Card>
 
-                        <Card className="p-6 bg-[#161b22] border-[#30363d]">
+                        <Card className="p-6 bg-gray-900/50 border-[#30363d]">
                             <div className="space-y-4">
                                 {contactDetails.map((item, index) => (
                                     <div key={index} className="flex justify-between items-center">
@@ -162,7 +162,7 @@ const Contact = () => {
                         Contáctanos
                     </h1>
 
-                    <Card className="p-6 bg-[#161b22] border-[#30363d]">
+                    <Card className="p-6 bg-gray-900/50 border-[#30363d]">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="space-y-2">
                                 <label htmlFor="name" className="text-sm font-medium text-[#8b949e]">
@@ -177,7 +177,7 @@ const Contact = () => {
                                         onChange={handleInputChange}
                                         required
                                         placeholder="Tu nombre"
-                                        className="pl-10 bg-[#0d1117] border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
+                                        className="pl-10 bg-gray-800/50 border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
                                     />
                                 </div>
                             </div>
@@ -196,7 +196,7 @@ const Contact = () => {
                                         onChange={handleInputChange}
                                         required
                                         placeholder="tu@email.com"
-                                        className="pl-10 bg-[#0d1117] border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
+                                        className="pl-10 bg-gray-800/50 border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
                                     />
                                 </div>
                             </div>
@@ -215,7 +215,7 @@ const Contact = () => {
                                         required
                                         rows={6}
                                         placeholder="Escribe tu mensaje aquí..."
-                                        className="pl-10 resize-none bg-[#0d1117] border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
+                                        className="pl-10 resize-none bg-gray-800/50 border-[#30363d] text-[#c9d1d9] placeholder:text-[#8b949e]"
                                     />
                                 </div>
                             </div>
@@ -230,7 +230,7 @@ const Contact = () => {
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full sm:w-auto bg-[#58a6ff] hover:bg-[#79c0ff] text-white"
+                                className="w-full sm:w-auto bg-gray-950/80 hover:bg-[#79c0ff] text-white"
                             >
                                 <Send className="mr-2 h-4 w-4" />
                                 {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
