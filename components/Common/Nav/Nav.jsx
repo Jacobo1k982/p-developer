@@ -25,7 +25,7 @@ const Nav = ({ setIsOpen, isOpen }) => {
         "
             >
                 {/* Header con botón cerrar */}
-                <div className="flex items-center justify-between px-6 py-5 border-b border-[#30363d] bg-[#0d1117]/30">
+                <div className="flex items-center justify-between px-6 py-5 border-b border-[#30363d] bg-gray-950/95">
                     <span className="text-sm font-bold uppercase tracking-widest text-gray-500">
                         Navegación
                     </span>
@@ -73,7 +73,7 @@ const Nav = ({ setIsOpen, isOpen }) => {
                 </nav>
 
                 {/* Footer */}
-                <div className="px-6 py-5 text-xs text-center border-t border-[#30363d] bg-[#0d1117]/30">
+                <div className="px-6 py-5 text-xs text-center border-t border-[#30363d] bg-gray-950/95">
                     <p className="text-gray-500">
                         © {new Date().getFullYear()} Desarrollado por{' '}
                         <span className="text-[#1fdf64] font-medium">Jacobo Gutiérrez</span>

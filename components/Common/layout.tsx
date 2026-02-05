@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <div className="h-screen lg:p-[0.8rem] flex flex-col select-none font-sans antialiased bg-[#0d1117] text-[#c9d1d9]">
       {/* Mobile top bar - siempre dark */}
       <div className="lg:hidden">
-        <div className="bg-[#222216] text-[#c9d1d9] w-full h-10 flex items-center justify-between px-2 border-b border-[#30363d]">
+        <div className="bg-gray-950/95 text-[#c9d1d9] w-full h-10 flex items-center justify-between px-2 border-b border-[#30363d]">
           <div className="icon flex items-center gap-x-2 cursor-pointer" onClick={() => setIntro(!intro)}>
             <span className="icon border-2 border-[#58a6ff] text-[#58a6ff] p-1 text-sm rounded-md">
               <SlOptionsVertical />
@@ -36,7 +36,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div
           className={`
             w-64 h-screen left-0 lg:rounded-md -top-10 lg:top-0 lg:left-0 lg:h-full overflow-hidden 
-            bg-[#0d1117] shadow-lg z-50 lg:flex flex-col lg:relative 
+            bg-[#17170d] shadow-lg z-50 lg:flex flex-col lg:relative 
             ${intro ? 'flex absolute' : 'hidden'}
           `}
         >
@@ -54,10 +54,10 @@ export default function Layout({ children }: { children: ReactNode }) {
         {/* Contenido principal */}
         <div
           className="
-            w-full h-auto lg:w-9/12 shadow-lg bg-[#0d1117] 
+            w-full h-auto lg:w-9/12 shadow-lg bg-[#17150d] 
             relative overflow-auto overflow-x-hidden 
-            scrollbar-thin scrollbar-thumb-[#30363d] scrollbar-track-transparent 
-            border border-[#30363d] rounded-md
+            scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-transparent 
+            border border-gray-900 rounded-md
           "
         >
           {children}
@@ -66,15 +66,15 @@ export default function Layout({ children }: { children: ReactNode }) {
         {/* Right sidebar (Nav trigger) */}
         <div
           className="
-            hidden lg:block lg:w-20 lg:relative bg-[#0d1117] shadow-lg 
-            rounded-md overflow-hidden border border-[#30363d]
+            hidden lg:block lg:w-20 lg:relative bg-gray-950/95 shadow-lg 
+            rounded-md overflow-hidden border border-gray-700
           "
         >
           <div
             onClick={() => setIsOpen(!isOpen)}
             className="
-              bg-[#161b22] text-[#58a6ff] hidden lg:flex items-center h-16 
-              justify-center text-2xl cursor-pointer hover:bg-[#21262d] 
+              bg-gray-900 text-[#58a6ff] hidden lg:flex items-center h-16 
+              justify-center text-2xl cursor-pointer hover:bg-gray-800 
               transition-colors duration-200
             "
           >
